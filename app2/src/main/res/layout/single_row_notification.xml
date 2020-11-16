@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/single_row_notification_constraint_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp">
+
+    <TextView
+        android:id="@+id/tv_single_row_notification_order_received"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:inputType="textMultiLine"
+
+        android:text="Order received"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/ivMyAddressOverflow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/tv_single_row_notification_order_id"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:inputType="textMultiLine"
+
+        android:text="Order ID"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/ivMyAddressOverflow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_single_row_notification_order_received" />
+
+    <TextView
+        android:id="@+id/tv_single_row_notification_profession"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:inputType="textMultiLine"
+
+        android:text="We will be reaching you very shortly.....\nSo keep on checking the app for regular updates....."
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/ivMyAddressOverflow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_single_row_notification_order_id" />
+
+    <TextView
+        android:id="@+id/tvNotificationDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="TextView"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_single_row_notification_order_received"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- <EditText
+    android:id="@+id/single_row_address_user"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="16dp"
+    android:inputType="none"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp"
+
+    android:text="TextView"
+    android:background="@android:color/transparent"
+    android:textColor="@android:color/black"
+
+    android:textSize="14sp"
+    app:layout_constraintEnd_toStartOf="@+id/ivMyAddressOverflow"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/single_row_address_phone_number" />-->
+
+
+    <!--<ImageView
+        android:id="@+id/ivNotificationOverflow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/overflow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </ImageView>-->
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

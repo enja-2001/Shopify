@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/ivRating1"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView41"
+        app:srcCompat="@drawable/star" />
+
+    <ImageView
+        android:id="@+id/ivRating2"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="74dp"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView41"
+        app:srcCompat="@drawable/star" />
+    <!--    app:layout_constraintStart_toEndOf="@+id/ivRating1"-->
+
+
+    <ImageView
+        android:id="@+id/ivRating3"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView41"
+        app:srcCompat="@drawable/star" />
+
+    <ImageView
+        android:id="@+id/ivRating4"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="174dp"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView41"
+        app:srcCompat="@drawable/star" />
+
+    <ImageView
+        android:id="@+id/ivRating5"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="224dp"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView41"
+        app:srcCompat="@drawable/star" />
+
+
+
+
+
+
+
+    <TextView
+        android:id="@+id/textView41"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="Give your ratings"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvReviews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="72dp"
+        android:text="Give your reviews"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView41" />
+
+    <EditText
+        android:id="@+id/etReviews"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvReviews" />
+
+
+    <ImageView
+        android:id="@+id/ivRating6"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView41"
+        app:srcCompat="@drawable/star_outlined_white" />
+
+    <ImageView
+        android:id="@+id/ivRating7"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="74dp"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@id/textView41"
+        app:srcCompat="@drawable/star_outlined_white" />
+
+    <ImageView
+        android:id="@+id/ivRating8"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView41"
+        app:srcCompat="@drawable/star_outlined_white" />
+
+    <ImageView
+        android:id="@+id/ivRating9"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="174dp"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView41"
+        app:srcCompat="@drawable/star_outlined_white" />
+
+    <ImageView
+        android:id="@+id/ivRating10"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="224dp"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView41"
+        app:srcCompat="@drawable/star_outlined_white" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

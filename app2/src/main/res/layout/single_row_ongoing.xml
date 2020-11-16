@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/single_row_ongoing_cardview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/single_row_notification_constraint_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:id="@+id/tv_single_ongoing_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:inputType="textMultiLine"
+
+            android:text="Name"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/ivMyAddressOverflow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/tv_single_ongoing_profession"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:inputType="textMultiLine"
+
+            android:text="Profession"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/ivMyAddressOverflow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_single_ongoing_name" />
+
+        <TextView
+            android:id="@+id/tv_single_ongoing_starting_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:inputType="textMultiLine"
+
+            android:text="Staring date"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/ivMyAddressOverflow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_single_ongoing_profession" />
+
+        <TextView
+            android:id="@+id/tv_single_ongoing_ending_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="Ending date"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_single_ongoing_starting_date"/>
+
+        <!-- <EditText
+    android:id="@+id/single_row_address_user"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="16dp"
+    android:inputType="none"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp"
+
+    android:text="TextView"
+    android:background="@android:color/transparent"
+    android:textColor="@android:color/black"
+
+    android:textSize="14sp"
+    app:layout_constraintEnd_toStartOf="@+id/ivMyAddressOverflow"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/single_row_address_phone_number" />-->
+
+
+        <!--<ImageView
+        android:id="@+id/ivNotificationOverflow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/overflow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </ImageView>-->
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

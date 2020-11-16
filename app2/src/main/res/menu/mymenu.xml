@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/item3"
+        android:title="Home"
+        android:icon="@drawable/home">
+        <!--android:orderInCategory="1"-->
+
+    </item>
+
+
+    <item android:id="@+id/item2"
+        android:title="Explore"
+        android:icon="@drawable/explore">
+        <!-- android:orderInCategory="2">
+         app:showAsAction="never">-->
+
+    </item>
+
+    <item android:id="@+id/item10"
+        android:title="Bookings"
+        android:icon="@drawable/bookings">
+
+    </item>
+    <item android:id="@+id/item1"
+        android:title="Notifications"
+        android:icon="@drawable/notification">
+
+        <!-- android:orderInCategory="3"
+        app:showAsAction="never">-->
+
+    </item>
+
+
+
+
+
+</menu>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="profession">
+        <item>Maid</item>
+        <item>Cook</item>
+        <item>Mason</item>
+        <item>Plumber</item>
+
+        <item>Electrician</item>
+
+        <item>Delivery boy</item>
+
+        <item>Shopkeepeer staff</item>
+        <item>Driver</item>
+        <item>Painter</item>
+
+        <item>Carpenter</item>
+
+        <item>Beautician</item>
+        <item>Cleaner</item>
+
+        <item>Gardener</item>
+
+        <item>Catereer</item>
+
+
+
+
+
+
+    </string-array>
+</resources>

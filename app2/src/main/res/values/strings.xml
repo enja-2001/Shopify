@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Connectrees</string>
+    <string name="str1">name@gmail.com</string>
+    <string name="str2">qG7c@p?CpD</string>
+    <string name="str3">CREATE ACCOUNT</string>
+    <string name="str4">Already have an account?Login here</string>
+    <string name="str5">LOGIN</string>
+    <string name="str6">Welcome to the home screen.</string>
+    <string name="str7">Don\'t have an account? Register here</string>
+    <string name="str8">Log out</string>
+    <string name="str9">Please enter a name</string>
+    <string name="str10">SUBMIT</string>
+    <string name="str11">Red</string>
+    <string name="str12">Blue</string>
+    <string name="str13">enter your name</string>
+    <string name="str14">enter your phone number</string>
+    <string name="str15">Forgot password?</string>
+    <string name="str16">Enter email id</string>
+    <string name="str17">Send password reset email</string>
+
+    <string name="str18">Open</string>
+    <string name="str19">Close</string>
+    <string name="str20">Search</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="facebook_app_id">191019171870584</string>
+    <string name="fb_login_protocol_scheme">fb191019171870584</string>
+
+    <string name="edittext1_hint"><font size="14sp">First Name</font></string>
+    <string name="mapbox">pk.eyJ1IjoiZW5qYS0yMDAxIiwiYSI6ImNrYnkyajU4eDB2dDMydGxnc2oxam41dDkifQ.i77C__pKEuCCagjXv89drQ</string>
+
+</resources>

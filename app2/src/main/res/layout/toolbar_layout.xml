@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:theme="@style/MyStyle"
+    app:popupTheme="@style/MyMenuStyle">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+
+        <!--  <ImageView
+              android:src="@mipmap/ic_launcher"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content" /> -->
+
+        <TextView
+            style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/adamcg_pro"
+            android:text="CONNEC"
+            android:textColor="@android:color/black"
+            android:textSize="20dp" />
+
+        <TextView
+            style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dp"
+            android:layout_marginBottom="4dp"
+            android:fontFamily="@font/grand_hotel"
+            android:text="trees"
+            android:textColor="@color/logo"
+            android:textSize="30dp" />
+
+    </LinearLayout>
+
+
+</androidx.appcompat.widget.Toolbar>

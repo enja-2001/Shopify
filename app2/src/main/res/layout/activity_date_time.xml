@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DateTimeActivity">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="350dp"
+        android:layout_height="390dp"
+        app:cardElevation="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="?android:dividerHorizontal"
+            android:dividerPadding="8dp"
+            android:showDividers="middle">
+
+            <TextView
+                android:id="@+id/tvSelectDateTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Select Date and Time"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </TextView>
+
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+
+                android:layout_marginBottom="52dp"
+                android:background="@color/colorGrey2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/buttonDateTimeBack"
+                style="?android:buttonBarButtonStyle"
+                android:layout_width="175dp"
+                android:layout_height="52dp"
+                android:text="Back"
+                android:textColor="@color/colorGreen"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/view2"
+                app:layout_constraintStart_toStartOf="parent" />
+            <!--android:background="@drawable/my_button_3"-->
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="1dp"
+                android:layout_height="52dp"
+
+                android:background="@color/colorGrey2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+            <Button
+                android:id="@+id/buttonDateTimeNext"
+                style="?android:buttonBarButtonStyle"
+                android:layout_width="175dp"
+                android:layout_height="52dp"
+                android:text="Next"
+                android:textColor="@color/colorGreen"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/view2" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="65dp"
+                android:text="Select Date"
+                android:textColor="@android:color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvSelectDateTime" />
+
+            <!--<TextView
+                android:id="@+id/tvDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="80dp"
+                android:background="@drawable/mubutton"
+                android:clickable="true"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="Select Date "
+                android:inputType="none"
+                android:textColor="@android:color/black"
+                android:textColorHint="@color/colorGrey2"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@+id/textView12"
+
+                app:layout_constraintTop_toBottomOf="@+id/tvSelectDateTime" />-->
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="40dp"
+                android:text="Select Time"
+                android:textColor="@android:color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvYY" />
+
+            <!--<TextView
+                android:id="@+id/tvTime"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="75dp"
+                android:background="@drawable/mubutton"
+                android:clickable="true"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="Select Time"
+                android:inputType="none"
+                android:textColor="@android:color/black"
+                android:textColorHint="@color/colorGrey2"
+
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvYY" />-->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+
+                android:layout_marginTop="8dp"
+
+                android:text="When you want our workers to reach you"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvSelectDateTime" />
+
+            <TextView
+                android:id="@+id/tvDD"
+                android:layout_width="80dp"
+                android:layout_height="41dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="100dp"
+                android:background="@drawable/mubutton"
+                android:clickable="true"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="DD"
+                android:inputType="none"
+                android:textColor="@android:color/black"
+                android:textColorHint="@color/colorGrey2"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@+id/tvMM"
+                app:layout_constraintTop_toBottomOf="@+id/tvSelectDateTime" />
+
+            <TextView
+                android:id="@+id/tvMM"
+                android:layout_width="110dp"
+                android:layout_height="41dp"
+
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="100dp"
+                android:background="@drawable/mubutton"
+                android:clickable="true"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="MM"
+                android:inputType="none"
+                android:textColor="@android:color/black"
+                android:textColorHint="@color/colorGrey2"
+                android:textSize="16sp"
+
+                app:layout_constraintStart_toEndOf="@+id/tvYY"
+                app:layout_constraintTop_toBottomOf="@+id/tvSelectDateTime" />
+
+            <TextView
+                android:id="@+id/tvYY"
+                android:layout_width="80dp"
+                android:layout_height="41dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="100dp"
+                android:background="@drawable/mubutton"
+                android:clickable="true"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="YY"
+                android:inputType="none"
+                android:textColor="@android:color/black"
+                android:textColorHint="@color/colorGrey2"
+
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvSelectDateTime" />
+
+
+            <TextView
+                android:id="@+id/tvAMPM"
+                android:layout_width="80dp"
+                android:layout_height="41dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="75dp"
+                android:background="@drawable/mubutton"
+                android:clickable="true"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="AM/PM"
+                android:inputType="none"
+                android:textColor="@android:color/black"
+                android:textColorHint="@color/colorGrey2"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@+id/tvMI"
+                app:layout_constraintTop_toBottomOf="@+id/tvYY" />
+
+            <TextView
+                android:id="@+id/tvMI"
+                android:layout_width="110dp"
+                android:layout_height="41dp"
+
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="75dp"
+                android:background="@drawable/mubutton"
+                android:clickable="true"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="MM"
+                android:inputType="none"
+                android:textColor="@android:color/black"
+                android:textColorHint="@color/colorGrey2"
+                android:textSize="16sp"
+
+                app:layout_constraintStart_toEndOf="@+id/tvHH"
+                app:layout_constraintTop_toBottomOf="@+id/tvYY" />
+
+            <TextView
+                android:id="@+id/tvHH"
+                android:layout_width="80dp"
+                android:layout_height="41dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="75dp"
+                android:background="@drawable/mubutton"
+                android:clickable="true"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="HH"
+                android:inputType="none"
+                android:textColor="@android:color/black"
+                android:textColorHint="@color/colorGrey2"
+
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvYY" />
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

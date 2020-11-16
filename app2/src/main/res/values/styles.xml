@@ -1,0 +1,97 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <!--<style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">-->
+    <!-- Theme.AppCompat.Light.NoActionBar-->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+
+        <!--<item name="android:statusBarColor">@color/color_secondary</item>-->
+        <item name="android:actionOverflowButtonStyle">@style/AppTheme.OverFlow</item>
+
+
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+
+        <item name="android:actionBarSize">60dp</item>
+        <item name="actionBarSize">60dp</item>
+
+        <item name="homeAsUpIndicator">@drawable/menu</item>
+        <item name="android:homeAsUpIndicator">@drawable/menu</item>
+        <!-- Customize your theme here. -->
+
+        <item name="android:editTextColor">@android:color/white</item>
+        <item name="android:textColorHint">@android:color/white</item>
+
+
+    </style>
+
+    <style name="AppTheme.OverFlow">
+        <item name="android:src">@drawable/overflow</item>
+
+    </style>
+
+
+
+    <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="color">@color/colorGrey</item>
+    </style>
+
+    <style name="NavigationDrawerStyle">
+
+        <item name="android:textSize">14sp</item><!-- text size in menu-->
+
+    </style>
+
+    <style name="MyStyle" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:background">@color/colorPrimary</item>
+
+    </style>
+
+    <style name="MyMenuStyle" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:background">@color/colorMenu</item>
+        <item name="overlapAnchor">false</item>
+        <item name="android:dropDownVerticalOffset">-5dp</item>
+
+    </style>
+
+    <style name="BottomNavigationTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorBlack</item>
+        <item name="android:textColorSecondary">@color/colorGrey</item>
+    </style>
+
+    <style name="CustomTextAppearance" parent="@android:style/TextAppearance">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorAccent</item>
+
+    </style>
+
+    <style name="AlertDialogStyle" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:textColor">#FF4081</item>  // you can change the color of the yearPiker dialog
+        <item name="android:textColorPrimary">#FF4081</item> // you can change the color of the yearPiker dialog
+    </style>
+
+    <style name="AppTheme.Picker" parent="Theme.AppCompat.Light.NoActionBar" >
+        <item name="android:textColorPrimary">@android:color/black</item>
+    </style>
+
+    <style name="spinner_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/gradient_spinner</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingRight">20dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:popupBackground">#DFFFFFFF</item>
+    </style>
+
+
+
+
+
+
+
+
+
+</resources>

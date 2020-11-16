@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+   <!-- <item android:title="Basics">
+        <menu>
+
+            <group android:checkableBehavior="single">
+
+                <item android:id="@+id/item4"
+                    android:title="Bookings"
+                    android:orderInCategory="1"
+                    app:showAsAction="never">
+
+                </item>
+                <item android:id="@+id/item5"
+                    android:title="Trends"
+                    android:orderInCategory="2"
+                    app:showAsAction="never">
+
+                </item>
+
+                <item android:id="@+id/item6"
+                    android:title="Logout"
+                    android:orderInCategory="3"
+                    app:showAsAction="never">
+
+                </item>
+            </group>
+
+        </menu>
+    </item>
+
+    <item android:title="More options">
+        <menu>-->
+            <item android:id="@+id/item7"
+                android:title="My account"
+                android:icon="@drawable/person_outline">
+
+            </item>
+
+            <item android:id="@+id/item11"
+                android:title="About us"
+                android:icon="@drawable/add_worker">
+
+            </item>
+
+            <item android:id="@+id/item8"
+                android:title="Help and feedback"
+                android:icon="@drawable/help">
+
+            </item>
+            <item android:id="@+id/item9"
+                android:title="Logout"
+                android:icon="@drawable/exit">
+
+
+            </item>
+
+
+
+</menu>
