@@ -35,6 +35,7 @@ public class HomeActivity extends AppCompatActivity  implements NavigationView.O
     DrawerLayout dl;
     ActionBarDrawerToggle abdt;
 
+
     BottomNavigationView bn;
     //MaterialSearchView sv;
     FirebaseAuth ob;
