@@ -33,7 +33,7 @@ public class timeSlotInput extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time_slot_input);
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(UserProfileActivity.this);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         String ph = preferences.getString("Phone Number", null);
         FirebaseFirestore.getInstance().collection("timeSlots").document("1111111111").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
