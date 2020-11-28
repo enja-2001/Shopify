@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Cancel_Booking"></activity>
+        <activity android:name=".MainActivity2" />
         <activity android:name=".timeSlotInput" />
         <activity android:name=".timeSlot" />
         <activity android:name=".AboutUsActivity" />
