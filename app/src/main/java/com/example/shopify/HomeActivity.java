@@ -35,7 +35,6 @@ public class HomeActivity extends AppCompatActivity  implements NavigationView.O
     DrawerLayout dl;
     ActionBarDrawerToggle abdt;
 
-
     BottomNavigationView bn;
     //MaterialSearchView sv;
     FirebaseAuth ob;
@@ -80,8 +79,7 @@ public class HomeActivity extends AppCompatActivity  implements NavigationView.O
 
         abdt.setDrawerIndicatorEnabled(true);
         abdt.syncState();
-//        abdt.setDrawerArrowDrawable(new HamburgerDrawable(this));
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.myframe, new HomeFragment()).commit();
@@ -117,6 +115,7 @@ public class HomeActivity extends AppCompatActivity  implements NavigationView.O
                 dl.openDrawer(GravityCompat.START);
             }
         });
+
 
         bn.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

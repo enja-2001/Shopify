@@ -55,7 +55,7 @@
                 android:layout_marginTop="60dp"
                 android:layout_marginLeft="15dp"
                 android:fontFamily="@font/open_sans_regular"
-                android:text="where safety is the first priority"
+                android:text="your safety is our first priority"
                 android:textColor="@color/textColor"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

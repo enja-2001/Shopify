@@ -9,15 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Cancel_Booking"></activity>
-        <activity android:name=".MainActivity2" />
-        <activity android:name=".timeSlotInput" />
-        <activity android:name=".timeSlot" />
+        <activity android:name=".RecyclerViewShopItems"></activity>
+        <activity android:name=".RecyclerViewShopList" />
         <activity android:name=".AboutUsActivity" />
         <activity android:name=".UserProfileActivity" />
         <activity android:name=".OTPVerificationActivity" />
         <activity android:name=".OTPActivity" />
-        <activity android:name=".HomeActivity" />
+        <activity
+            android:name=".HomeActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

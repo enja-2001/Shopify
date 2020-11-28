@@ -3,11 +3,13 @@
 <!--    <color name="colorPrimary">#6200EE</color>-->
 <!--    <color name="colorPrimaryDark">#3700B3</color>-->
     <color name="colorPrimary">#FF3366</color>
-<!--    <color name="colorPrimary">#cc2b5e</color>-->
+    <color name="colorPrimaryDark">#FF3366</color>
+
+    <!--    <color name="colorPrimary">#cc2b5e</color>-->
 <!--    <color name="colorPrimary">#ef629f</color>-->
 
 
-    <color name="colorPrimaryDark">#FF1F57</color>
+<!--    <color name="colorPrimaryDark">#FF1F57</color>-->
     <color name="colorAccent">#03DAC5</color>
     <color name="textColor">#011627</color>
 
@@ -22,4 +24,9 @@
     <color name="colorBlack">#000000</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorPurpleBlue">#753a88</color>
+    <color name="colorOutrageousOrange">#fa7e61</color>
+    <color name="colorPeachPuff">#fee1c7</color>
+    <color name="colorBlue2">#2873F0</color>
+    <color name="colorBlue3">#2882F0</color>
+
 </resources>

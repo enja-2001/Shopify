@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:fillViewport="true">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:background="@color/colorBlue3">
 
     <include android:id="@+id/fragment_home_toolbar"
         layout="@layout/toolbar_layout"
@@ -11,4 +18,60 @@
         app:layout_constraintRight_toRightOf="parent">
     </include>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+                android:id="@+id/tvTitle1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/open_sans_regular"
+                android:text="Shops available in your area"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_home_toolbar">
+
+    </TextView>
+
+    <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="65dp"
+                android:layout_marginTop="25dp"
+                android:src="@drawable/ic_shop_vector_graphic"
+                app:layout_constraintStart_toEndOf="@+id/tvTitle1"
+                app:layout_constraintTop_toBottomOf="@id/fragment_home_toolbar">
+
+    </ImageView>
+
+    <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="15dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitle1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="10dp">
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewFragmentHome"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

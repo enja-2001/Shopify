@@ -1,62 +1,54 @@
 package com.example.shopify;
 
-import android.os.Bundle;
-
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class HomeFragment extends Fragment {
+public class RecyclerViewShopList extends AppCompatActivity {
 
+    String category;
+    TextView tvTitle;
     RecyclerView recyclerView;
-    RecyclerViewAdpaterFragmentHome recyclerViewAdpater;
-    ArrayList<ShopCategories> al;
-
-
-    public HomeFragment() {
-        // Required empty public constructor
-    }
+    RecyclerViewAdapterShopList recyclerViewAdpater;
+    ArrayList<Shop> al;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_recycler_view_shop_list);
+
+
+        category=getIntent().getStringExtra("Category");
+        tvTitle=(TextView)findViewById(R.id.tvToolbarTitle);
+        tvTitle.setText(category);
+
         al=new ArrayList<>();
 
-
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerViewFragmentHome);
+        recyclerView = (RecyclerView)findViewById(R.id.recyclerViewShopList);
         recyclerView.setHasFixedSize(true);
         recyclerView.setNestedScrollingEnabled(false);
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
-        recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.HORIZONTAL));
-        //recyclerView.setItemAnimator();
 
-
-        recyclerViewAdpater=new RecyclerViewAdpaterFragmentHome(al,getContext());
+        recyclerViewAdpater=new RecyclerViewAdapterShopList(al,this);
         recyclerView.setAdapter(recyclerViewAdpater);
 
-        FirebaseFirestore.getInstance().collection("ShopCategories").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        FirebaseFirestore.getInstance().collection("Shops").whereEqualTo("Category",category).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()) {
@@ -64,7 +56,7 @@ public class HomeFragment extends Fragment {
                         String cat = documentSnapshot.getString("Category");
                         String img = documentSnapshot.getString("Image");
 
-                        ShopCategories ob = new ShopCategories(cat, img);
+                        Shop ob = new Shop(documentSnapshot.getString("Address"),documentSnapshot.getString("Category"),documentSnapshot.getString("Closing time"),documentSnapshot.getString("Name"),documentSnapshot.getString("Opening time"),documentSnapshot.getString("PIN code"),documentSnapshot.getString("Phone number"),documentSnapshot.getString("Rating"),documentSnapshot.getString("Rating count"),documentSnapshot.getString("Review count"),documentSnapshot.getString("Shopkeeper"));
                         al.add(ob);
 
                         recyclerViewAdpater.notifyDataSetChanged();
@@ -76,12 +68,10 @@ public class HomeFragment extends Fragment {
 
                 }
                 else{
-                    Toast.makeText(getContext(), "Error occured in fetching data!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RecyclerViewShopList.this, "Error occured in fetching data!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
-
-        return view;
     }
 }

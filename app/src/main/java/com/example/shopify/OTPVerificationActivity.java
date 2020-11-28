@@ -352,7 +352,11 @@ public class OTPVerificationActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-//                            addUserToDatabase();
+                            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(OTPVerificationActivity.this);
+                             SharedPreferences.Editor editor = preferences.edit();
+
+                            editor.putString("Phone Number", phoneNumber);
+                            editor.apply();
                              Intent intent=new Intent(OTPVerificationActivity.this,com.example.shopify.HomeActivity.class);
                              startActivity(intent);
 
