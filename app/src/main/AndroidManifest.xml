@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RecyclerViewShopItems"></activity>
+        <activity android:name=".timeSlot"></activity>
+        <activity android:name=".RecyclerViewShopItems" />
         <activity android:name=".RecyclerViewShopList" />
         <activity android:name=".AboutUsActivity" />
         <activity android:name=".UserProfileActivity" />

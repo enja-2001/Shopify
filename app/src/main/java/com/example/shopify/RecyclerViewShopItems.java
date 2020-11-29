@@ -98,9 +98,9 @@ public class RecyclerViewShopItems extends AppCompatActivity {
         butProceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent=new Intent(this,TestTimeSlotActivity.class);
+                Intent intent=new Intent(RecyclerViewShopItems.this,timeSlot.class);
 //                intent.putExtra("OrderList",recyclerViewAdpater.alOrderList);
-//                startActivity(intent);
+                startActivity(intent);
             }
         });
     }
