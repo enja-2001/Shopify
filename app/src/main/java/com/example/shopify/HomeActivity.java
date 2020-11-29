@@ -75,7 +75,9 @@ public class HomeActivity extends AppCompatActivity  implements NavigationView.O
 
         dl.addDrawerListener(abdt);
 
-        phoneNumber = getIntent().getStringExtra("data");
+//        phoneNumber = getIntent().getStringExtra("data");
+        phoneNumber = preferences.getString("Phone Number",null);
+
 
         abdt.setDrawerIndicatorEnabled(true);
         abdt.syncState();
@@ -132,9 +134,9 @@ public class HomeActivity extends AppCompatActivity  implements NavigationView.O
                         break;
 
 
-                    case R.id.item2:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.myframe, new FavouritesFragment()).commit();
-                        break;
+//                    case R.id.item2:
+//                        getSupportFragmentManager().beginTransaction().replace(R.id.myframe, new FavouritesFragment()).commit();
+//                        break;
                     case R.id.item3:
                         getSupportFragmentManager().beginTransaction().replace(R.id.myframe, new HomeFragment()).commit();
                         break;
@@ -142,9 +144,9 @@ public class HomeActivity extends AppCompatActivity  implements NavigationView.O
                         getSupportFragmentManager().beginTransaction().replace(R.id.myframe, new OrdersFragment()).commit();
                         break;
 
-                    case R.id.item13:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.myframe, new WishlistFragment()).commit();
-                        break;
+//                    case R.id.item13:
+//                        getSupportFragmentManager().beginTransaction().replace(R.id.myframe, new WishlistFragment()).commit();
+//                        break;
                 }
                 return true;
             }

@@ -34,7 +34,7 @@ public class timeSlot extends AppCompatActivity {
         setContentView(R.layout.activity_time_slot);
 
 
-        FirebaseFirestore.getInstance().collection("Shops").document("9888888888").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        FirebaseFirestore.getInstance().collection("Shops").document("9999999999").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if(task.isSuccessful()){
@@ -146,8 +146,6 @@ public class timeSlot extends AppCompatActivity {
     private void addTimeSlots(String s1,String s2){
         String t1 = convert12HourTo24HourTime(s1);
         String t2 = convert12HourTo24HourTime(s2);
-        Log.d("t1",t1);
-        Log.d("t2",s2+"     "+t2);
 
 
         int hrOpen = Integer.parseInt(t1.substring(0, 2));
@@ -159,7 +157,8 @@ public class timeSlot extends AppCompatActivity {
         HashMap<String, Integer> hashMap = new HashMap<>();
         int hr = hrOpen;
         int min = minOpen;
-        String t = "";
+        String temp1 =s1;
+        String temp2="";
 
         while (hr < hrClose) {
             min = min + 15;
@@ -180,8 +179,9 @@ public class timeSlot extends AppCompatActivity {
             else
                 strmin = "" + min;
 
-            t = convert24HourTo12HourTime(strhr + ":" + strmin);
-            hashMap.put(t,0);
+            temp2 = convert24HourTo12HourTime(strhr + ":" + strmin);
+            hashMap.put(temp1+" - "+temp2,0);
+            temp1=temp2;
 
         }
         //   hr=hrClose
@@ -200,11 +200,11 @@ public class timeSlot extends AppCompatActivity {
             else
                 strmin = "" + min;
 
-            t = convert24HourTo12HourTime(strhr + ":" + strmin);
-            hashMap.put(t,0);
+            temp2 = convert24HourTo12HourTime(strhr + ":" + strmin);
+            hashMap.put(temp1+" - "+temp2,0);
         }
 
-        FirebaseFirestore.getInstance().collection("TimeSlots").document("9888888888").set(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+        FirebaseFirestore.getInstance().collection("TimeSlots").document("9999999999").set(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){

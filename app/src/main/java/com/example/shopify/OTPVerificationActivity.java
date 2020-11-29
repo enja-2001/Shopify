@@ -357,7 +357,7 @@ public class OTPVerificationActivity extends AppCompatActivity {
 
                             editor.putString("Phone Number", phoneNumber);
                             editor.apply();
-                             Intent intent=new Intent(OTPVerificationActivity.this,com.example.shopify.HomeActivity.class);
+                            Intent intent=new Intent(OTPVerificationActivity.this,com.example.shopify.HomeActivity.class);
                              startActivity(intent);
 
                         } else {
@@ -413,76 +413,6 @@ public class OTPVerificationActivity extends AppCompatActivity {
         }
     };
 
-//    private void addUserToDatabase() {
-//        Toast.makeText(this, "Inside adddUserToDatabase", Toast.LENGTH_SHORT).show();
-//
-//        FirebaseFirestore.getInstance().collection("Hello").document("ItsMe");
-//
-//        DocumentReference docref = FirebaseFirestore.getInstance().collection("Users").document("+91" + phoneNumber);
-//
-//        docref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                if (task.isSuccessful()) {
-//                    if (task.getResult().exists()) {
-//                        //document exists in Users collection
-//                        insertUserDataIntoSharedPreference();
-//
-//                    } else {
-//
-//                        Intent intent = new Intent(OTPVerificationActivity.this, com.example.shopify.HomeActivity.class);
-//                        intent.putExtra("data",phoneNumber);
-//                        startActivity(intent);
-//                    }
-//                } else {
-//                    Toast.makeText(OTPVerificationActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
-//
-//                }
-//            }
-//        });
-//    }
-//    public void insertUserDataIntoSharedPreference(){
-//        progressDialog.setTitle("Storing data");
-//        progressDialog.setMessage("Please wait until the data is stored successfully" );
-//        progressDialog.setCanceledOnTouchOutside(false);
-//        progressDialog.show();
-//
-//        DocumentReference docref= FirebaseFirestore.getInstance().collection("Users").document("+91"+phoneNumber);
-//        docref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                if(task.isSuccessful()){
-//                    DocumentSnapshot documentSnapshot=task.getResult();
-//
-//                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(OTPVerificationActivity.this);
-//                    SharedPreferences.Editor editor = preferences.edit();
-//
-//                    editor.putString("Phone Number", phoneNumber);
-//                    editor.putString("First Name",documentSnapshot.getString("First name"));
-//                    editor.putString("Last Name", documentSnapshot.getString("Last name"));
-//                    editor.putString("Image",documentSnapshot.getString("Photo"));
-//
-//                    editor.apply();
-//
-//                    progressDialog.dismiss();
-//
-//                    Intent intent = new Intent(OTPVerificationActivity.this, com.example.shopify.HomeActivity.class);
-//                    intent.putExtra("data",phoneNumber);
-//                    startActivity(intent);
-//
-//
-//                }
-//                else {
-//                    progressDialog.dismiss();
-//                    Toast.makeText(OTPVerificationActivity.this, "No document found!", Toast.LENGTH_SHORT).show();
-//                }
-//
-//            }
-//        });
-//
-//
-//
-//    }
 
     public void onBackPressed() {
         mFirebaseAuth.signOut();

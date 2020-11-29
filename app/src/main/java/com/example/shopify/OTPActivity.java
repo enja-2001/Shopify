@@ -108,7 +108,7 @@ public class OTPActivity extends AppCompatActivity {
         });
 
 
-        Toast.makeText(OTPActivity.this, "+91"+phoneNumber, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(OTPActivity.this, "+91"+phoneNumber, Toast.LENGTH_SHORT).show();
     }
 
     PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks=new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {

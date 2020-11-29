@@ -11,14 +11,14 @@
 
 
 
-    <item android:id="@+id/item13"
-        android:title="Wishlist"
-        android:icon="@drawable/wishlist"/>
+<!--    <item android:id="@+id/item13"-->
+<!--        android:title="Wishlist"-->
+<!--        android:icon="@drawable/wishlist"/>-->
 
-    <item android:id="@+id/item2"
-        android:title="Favourites"
-        android:icon="@drawable/favourites">
-    </item>
+<!--    <item android:id="@+id/item2"-->
+<!--        android:title="Favourites"-->
+<!--        android:icon="@drawable/favourites">-->
+<!--    </item>-->
 
 
     <item android:id="@+id/item10"

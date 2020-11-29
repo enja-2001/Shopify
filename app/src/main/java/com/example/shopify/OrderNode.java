@@ -1,6 +1,8 @@
 package com.example.shopify;
 
-class OrderNode {
+import java.io.Serializable;
+
+class OrderNode implements Serializable {
     public String category;
     public String subCategory;
     public String description;

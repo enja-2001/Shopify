@@ -26,9 +26,9 @@ android {
         release {
             //storeFile file("C:/Users/hp/.android/debug.keystore")
             storeFile file("F:/Keystore/Firebase_6/Firebase_6.jks")
-            storePassword "fs123581321"
+            storePassword "1234567890"
             keyAlias "key0"
-            keyPassword "fs123581321"
+            keyPassword "1234567890"
         }
     }
 
