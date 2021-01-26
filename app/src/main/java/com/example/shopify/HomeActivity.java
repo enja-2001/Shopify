@@ -123,30 +123,21 @@ public class HomeActivity extends AppCompatActivity  implements NavigationView.O
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
+                        
                     case R.id.item1:
                         itemView.removeView(notificationBadge);
-
-
                         editor.putString("notificationBadgeCount", Integer.toString(0));
                         editor.apply();
-
                         getSupportFragmentManager().beginTransaction().replace(R.id.myframe, new NotificationFragment()).commit();
                         break;
 
-
-//                    case R.id.item2:
-//                        getSupportFragmentManager().beginTransaction().replace(R.id.myframe, new FavouritesFragment()).commit();
-//                        break;
                     case R.id.item3:
                         getSupportFragmentManager().beginTransaction().replace(R.id.myframe, new HomeFragment()).commit();
                         break;
+                        
                     case R.id.item10:
                         getSupportFragmentManager().beginTransaction().replace(R.id.myframe, new OrdersFragment()).commit();
                         break;
-
-//                    case R.id.item13:
-//                        getSupportFragmentManager().beginTransaction().replace(R.id.myframe, new WishlistFragment()).commit();
-//                        break;
                 }
                 return true;
             }
