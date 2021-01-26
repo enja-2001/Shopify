@@ -112,8 +112,6 @@ public class OTPActivity extends AppCompatActivity {
     }
 
     PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks=new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-
-
         @Override
         public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
             // signInWithPhoneAuthCredential(phoneAuthCredential);
@@ -123,51 +121,26 @@ public class OTPActivity extends AppCompatActivity {
         @Override
         public void onVerificationFailed(@NonNull FirebaseException e) {
             progressBar.setVisibility(View.GONE);
-
             iv.setVisibility(View.VISIBLE);
             tv1.setVisibility(View.VISIBLE);
             tv2.setVisibility(View.VISIBLE);
             tv3.setVisibility(View.VISIBLE);
             but.setVisibility(View.VISIBLE);
             et.setVisibility(View.VISIBLE);
-
             Toast.makeText(OTPActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-
-
-//             Toast.makeText(OTPActivity.this, "Verification failed!!", Toast.LENGTH_SHORT).show();
-
         }
 
         @Override
         public void onCodeSent(@NonNull final String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-
             super.onCodeSent(s, forceResendingToken);
             mResendToken = forceResendingToken;
             mVerificationId = s;
-
             progressBar.setVisibility(View.GONE);
-
-
-
-
             Intent intent = new Intent(OTPActivity.this,com.example.shopify. OTPVerificationActivity.class);
             intent.putExtra("verificationId",mVerificationId);
             intent.putExtra("phoneNumber",phoneNumber);
             intent.putExtra("token",mResendToken);
             startActivity(intent);
-
-
-//            new android.os.Handler().postDelayed(
-//                    new Runnable() {
-//                        public void run() {
-//                            Intent intent = new Intent(OTPActivity.this,com.example.firebase_6. OTPVerificationActivity.class);
-//                            intent.putExtra("verificationId",mVerificationId);
-//                            intent.putExtra("phoneNumber",phoneNumber);
-//                            intent.putExtra("token",mResendToken);
-//                            startActivity(intent);
-//                        }
-//                    },
-//                    1000);
         }
     };
 
