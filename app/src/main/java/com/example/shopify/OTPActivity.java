@@ -113,7 +113,6 @@ public class OTPActivity extends AppCompatActivity {
 
     PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks=new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
-
         @Override
         public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
             // signInWithPhoneAuthCredential(phoneAuthCredential);
@@ -157,21 +156,8 @@ public class OTPActivity extends AppCompatActivity {
             startActivity(intent);
 
 
-//            new android.os.Handler().postDelayed(
-//                    new Runnable() {
-//                        public void run() {
-//                            Intent intent = new Intent(OTPActivity.this,com.example.firebase_6. OTPVerificationActivity.class);
-//                            intent.putExtra("verificationId",mVerificationId);
-//                            intent.putExtra("phoneNumber",phoneNumber);
-//                            intent.putExtra("token",mResendToken);
-//                            startActivity(intent);
-//                        }
-//                    },
-//                    1000);
         }
     };
-
-
 
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
         mFirebaseAuth.signInWithCredential(credential)
@@ -191,7 +177,6 @@ public class OTPActivity extends AppCompatActivity {
                     }
                 });
     }
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -199,7 +184,6 @@ public class OTPActivity extends AppCompatActivity {
             Intent intent=new Intent(this,com.example.shopify.HomeActivity.class);
             startActivity(intent);
         }
-
     }
     public void onBackPressed() {
         mFirebaseAuth.signOut();

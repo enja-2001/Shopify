@@ -73,14 +73,12 @@ public class RecyclerViewShopItems extends AppCompatActivity {
 
                     for(Map.Entry<String,Object> entry:map.entrySet()){
                         if(entry.getKey().equals("Items")){
-//                            al=(ArrayList<HashMap<String, HashMap>>)entry.getValue();
                             hashMap=(HashMap<String,HashMap>)entry.getValue();
                         }
                     }
 
                     for(Map.Entry<String,HashMap> entry:hashMap.entrySet()){
                         String key=(String)entry.getKey();
-//                        newHashMap.put(key,(HashMap<String,HashMap<String,String>>)entry.getValue());
                         HashMap newHashMap=new HashMap();
                         newHashMap.put(key,(HashMap)entry.getValue());
 

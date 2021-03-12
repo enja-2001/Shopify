@@ -62,10 +62,6 @@ public class RecyclerViewShopList extends AppCompatActivity {
                         recyclerViewAdpater.notifyDataSetChanged();
 
                     }
-//
-//                    recyclerViewAdpater=new RecyclerViewAdpaterFragmentHome(al,getContext());
-//                    recyclerView.setAdapter(recyclerViewAdpater);
-
                 }
                 else{
                     Toast.makeText(RecyclerViewShopList.this, "Error occured in fetching data!", Toast.LENGTH_SHORT).show();

@@ -237,7 +237,6 @@ public class timeSlotInput extends AppCompatActivity implements AdapterView.OnIt
                             }
                             else{
                                 Toast.makeText(timeSlotInput.this, "Error occured!", Toast.LENGTH_SHORT).show();
-
                             }
                         }
                     });

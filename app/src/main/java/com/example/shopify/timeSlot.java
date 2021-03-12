@@ -37,51 +37,20 @@ public class timeSlot extends AppCompatActivity {
         FirebaseFirestore.getInstance().collection("Shops").document("9999999999").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if(task.isSuccessful()){
-                    DocumentSnapshot documentSnapshot=task.getResult();
-                    open=documentSnapshot.getString("Opening time");
-                    close=documentSnapshot.getString("Closing time");
+                if (task.isSuccessful()) {
+                    DocumentSnapshot documentSnapshot = task.getResult();
+                    open = documentSnapshot.getString("Opening time");
+                    close = documentSnapshot.getString("Closing time");
 
-                    addTimeSlots(open,close);
+                    addTimeSlots(open, close);
 
-                }
-                else{
+                } else {
                     Toast.makeText(timeSlot.this, "Oops! Some error has occured!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
 
-
-
-//        String hro = open.substring(0, open.indexOf(':'));
-//        String mo = open.substring(open.indexOf(':')+1, open.indexOf(' '));
-//        String hre = close.substring(0, close.indexOf(':'));
-//        String me = close.substring(close.indexOf(':')+1, close.indexOf(' '));
-//        int hr, m;
-//        String t;
-//        hr = Integer.parseInt(hro);
-//        m = Integer.parseInt(mo);
-//        String sl[] = {"0", "15", "30", "45", "0"};
-//        while (true)
-//        {
-//            if(Integer.toString(hr).equals(hre))
-//            {
-//                if (Integer.toString(m).equals(me))
-//                    break;
-//            }
-//            m = m+15;
-//            if(m > 60)
-//            {
-//                hr = hr++;
-//                m = m-60;
-//            }
-//            t = Integer.toString(hr) + ":" + Integer.toString(m);
-//            time.put(t, "0");
-//        }
-//        shop = FirebaseDatabase.getInstance().getReference();
-//        shop.child("Null").push().setValue(time);
-//        FirebaseFirestore.getInstance().collection("timeSlots").document("1111111111").set(time);
     }
 
     public String convert12HourTo24HourTime(String s) { //input format "hh:mm a"  output format "hh:mm"

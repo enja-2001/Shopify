@@ -58,6 +58,7 @@ class RecyclerViewAdpaterFragmentHome extends RecyclerView.Adapter<RecyclerViewA
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+
         holder.tv.setText(""+al.get(position).category);
 
         if(al.get(position).imgstr!=null)
