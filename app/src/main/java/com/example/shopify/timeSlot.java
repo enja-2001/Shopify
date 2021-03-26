@@ -19,7 +19,7 @@ import java.util.HashMap;
 import developers.mobile.abt.FirebaseAbt;
 
 public class timeSlot extends AppCompatActivity {
-
+    public int size;
     private String open;
     private String close;
     private DatabaseReference shop;
@@ -60,6 +60,7 @@ public class timeSlot extends AppCompatActivity {
                 if (Integer.toString(m).equals(me))
                     break;
             }
+            size++;
             m = m+15;
             if(m > 60)
             {

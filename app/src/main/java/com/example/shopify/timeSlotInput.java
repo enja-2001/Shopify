@@ -8,6 +8,7 @@ import androidx.core.app.ComponentActivity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,17 +24,20 @@ import java.util.Map;
 import java.util.Set;
 
 public class timeSlotInput extends AppCompatActivity {
-    String timeSlot;
+    String slot;
     timeSlot ts = new timeSlot();
     public Map<String, String> time;
     public Map<String, String> person = new HashMap<>();
     public int maxPeople;
+    Spinner spin;
+    String open, close;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time_slot_input);
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(UserProfileActivity.this);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(timeSlotInput.this);
+        int c = 0;
         String ph = preferences.getString("Phone Number", null);
         FirebaseFirestore.getInstance().collection("timeSlots").document("1111111111").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -47,12 +51,12 @@ public class timeSlotInput extends AppCompatActivity {
                     while (itr.hasNext()) {
                         String key = itr.next();
                         int value = Integer.parseInt(time.get(key));
-                        if (timeSlot.equals(key) && value != maxPeople) {
+                        if (slot.equals(key) && value != maxPeople) {
                             value += 1;
                             time.put(key, Integer.toString(value));
                             person.put(ph, key);
                         }
-                        if (value == 4) {
+                        if (value == maxPeople) {
 
                         }
                     }
@@ -62,5 +66,6 @@ public class timeSlotInput extends AppCompatActivity {
                 }
             }
         });
+
     }
 }

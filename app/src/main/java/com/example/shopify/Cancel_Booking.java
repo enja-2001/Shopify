@@ -22,7 +22,7 @@ public class Cancel_Booking extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cancel__booking);
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(UserProfileActivity.this);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Cancel_Booking.this);
         String ph = preferences.getString("Phone Number", null);
         person = tsi.person;
         time = tsi.time;
