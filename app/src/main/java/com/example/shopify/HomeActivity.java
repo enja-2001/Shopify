@@ -35,7 +35,6 @@ public class HomeActivity extends AppCompatActivity  implements NavigationView.O
     DrawerLayout dl;
     ActionBarDrawerToggle abdt;
 
-
     BottomNavigationView bn;
     //MaterialSearchView sv;
     FirebaseAuth ob;
@@ -76,12 +75,13 @@ public class HomeActivity extends AppCompatActivity  implements NavigationView.O
 
         dl.addDrawerListener(abdt);
 
-        phoneNumber = getIntent().getStringExtra("data");
+//        phoneNumber = getIntent().getStringExtra("data");
+        phoneNumber = preferences.getString("Phone Number",null);
+
 
         abdt.setDrawerIndicatorEnabled(true);
         abdt.syncState();
-//        abdt.setDrawerArrowDrawable(new HamburgerDrawable(this));
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.myframe, new HomeFragment()).commit();
@@ -118,6 +118,7 @@ public class HomeActivity extends AppCompatActivity  implements NavigationView.O
             }
         });
 
+
         bn.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -125,17 +126,12 @@ public class HomeActivity extends AppCompatActivity  implements NavigationView.O
                     case R.id.item1:
                         itemView.removeView(notificationBadge);
 
-
                         editor.putString("notificationBadgeCount", Integer.toString(0));
                         editor.apply();
 
                         getSupportFragmentManager().beginTransaction().replace(R.id.myframe, new NotificationFragment()).commit();
                         break;
 
-
-                    case R.id.item2:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.myframe, new FavouritesFragment()).commit();
-                        break;
                     case R.id.item3:
                         getSupportFragmentManager().beginTransaction().replace(R.id.myframe, new HomeFragment()).commit();
                         break;
@@ -143,14 +139,10 @@ public class HomeActivity extends AppCompatActivity  implements NavigationView.O
                         getSupportFragmentManager().beginTransaction().replace(R.id.myframe, new OrdersFragment()).commit();
                         break;
 
-                    case R.id.item13:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.myframe, new WishlistFragment()).commit();
-                        break;
                 }
                 return true;
             }
         });
-
         setNavigationViewListener();
 
 
