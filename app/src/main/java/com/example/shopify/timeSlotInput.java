@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
@@ -26,7 +27,9 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.lang.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -36,6 +39,8 @@ import java.util.Set;
 public class timeSlotInput extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     String timeSlot;
     String ph;
+    String shopName;
+    String shopAddress;
     int maxCustomer;
     ArrayList alTimeSlot;
     ArrayList<Long> alValue;
@@ -62,34 +67,6 @@ public class timeSlotInput extends AppCompatActivity implements AdapterView.OnIt
 
         butProceed=(Button)findViewById(R.id.butProceed);
         spinner=(Spinner)findViewById(R.id.spinner);
-
-//        FirebaseFirestore.getInstance().collection("TimeSlots").document(ph).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                if (task.isSuccessful()) {
-//                    DocumentSnapshot doc = task.getResult();
-//                    maxPeople =  Integer.parseInt(doc.getString("maxPeople"));
-//                    time = ts.time;
-//                    Set<String> keyset = time.keySet();
-//                    Iterator<String> itr = keyset.iterator();
-//                    while (itr.hasNext()) {
-//                        String key = itr.next();
-//                        int value = Integer.parseInt(time.get(key));
-//                        if (timeSlot.equals(key) && value != maxPeople) {
-//                            value += 1;
-//                            time.put(key, Integer.toString(value));
-//                            person.put(ph, key);
-//                        }
-//                        if (value == 4) {
-//
-//                        }
-//                    }
-//                }
-//                else {
-//                    Toast.makeText(timeSlotInput.this, "Error!", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
 
         FirebaseFirestore.getInstance().collection("Shops").document(ph).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -123,41 +100,44 @@ public class timeSlotInput extends AppCompatActivity implements AdapterView.OnIt
         butProceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String s=spinner.getSelectedItem().toString();
+                String s = spinner.getSelectedItem().toString();
 
-//                Object arr[]=alOrderList.toArray();
+                    String userPhoneNumber = preferences.getString("Phone Number", null);
 
-                String userPhoneNumber = preferences.getString("Phone Number", null);
+                    Calendar calendar = Calendar.getInstance();
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMM,yyyy");
+
+                    FirebaseFirestore.getInstance().collection("Shops").document(ph).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                shopName = task.getResult().getString("Name");
+                                shopAddress = task.getResult().getString("Address");
+
+                                Log.d("Inside", shopName + " - " + shopAddress);
+
+                                HashMap<String, Object> hashMap = new HashMap<>();
+                                hashMap.put("Time slot", s);
+                                hashMap.put("Order list", alOrderList);
+                                hashMap.put("User phone number", userPhoneNumber);
+                                hashMap.put("Shop phone number", ph);
+                                hashMap.put("User address", "");
+                                hashMap.put("Shop Name", shopName);
+                                hashMap.put("Shop Address", shopAddress);
+                                hashMap.put("Date", simpleDateFormat.format(calendar.getTime()));
 
 
-                HashMap<String,Object> hashMap=new HashMap<>();
-                hashMap.put("Time slot",s);
-                hashMap.put("Order list",alOrderList);
-                hashMap.put("User phone number",userPhoneNumber);
-                hashMap.put("Shop phone number",ph);
-                hashMap.put("User address","");
+                                Intent intent = new Intent(getApplicationContext(), OrderConfirmationActivity.class);
+                                intent.putExtra("OrderHashMap", hashMap);
+                                startActivity(intent);
 
-
-
-
-
-                FirebaseFirestore.getInstance().collection("Orders").document().set(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
-                            updateTimeSlot(s);
+                            } else {
+                                Toast.makeText(timeSlotInput.this, "Error occured !", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                        else{
-                            Toast.makeText(timeSlotInput.this, "Error occured!", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-
-
+                    });
             }
         });
-
-
     }
 
     private void populateArrayList(HashMap<String,Object> hashMap){
@@ -169,7 +149,6 @@ public class timeSlotInput extends AppCompatActivity implements AdapterView.OnIt
         for(Map.Entry m:hashMap.entrySet()){
             key=(String)m.getKey();
             val=(long)m.getValue();
-
             alTimeSlot.add(key);
             alValue.add(val);
         }
@@ -178,10 +157,7 @@ public class timeSlotInput extends AppCompatActivity implements AdapterView.OnIt
     private void createSpinner(){
 
         alTimeSlot.add(0, "Choose a time slot");
-
         ArrayAdapter adapter = new ArrayAdapter<CharSequence>(this, android.R.layout.simple_spinner_item, alTimeSlot) {
-
-
             @Override
             public boolean isEnabled(int position) {
                 // TODO Auto-generated method stub
@@ -190,8 +166,6 @@ public class timeSlotInput extends AppCompatActivity implements AdapterView.OnIt
                 }
                 return true;
             }
-
-
             @Override
             public View getDropDownView(int position, View convertView,
                                         ViewGroup parent) {
@@ -201,7 +175,7 @@ public class timeSlotInput extends AppCompatActivity implements AdapterView.OnIt
                 if (position == 0 || alValue.get(position-1)>=maxCustomer) {
                     mTextView.setTextColor(Color.GRAY);
                 } else {
-                    mTextView.setTextColor(Color.BLACK);
+                    mTextView.setTextColor(Color.parseColor("#011627"));
                 }
                 return mView;
             }
@@ -219,33 +193,6 @@ public class timeSlotInput extends AppCompatActivity implements AdapterView.OnIt
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
-
-    }
-    private void updateTimeSlot(String s){
-        FirebaseFirestore.getInstance().collection("TimeSlots").document(ph).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if(task.isSuccessful()){
-                    long val=task.getResult().getLong(s);
-                    val++;
-                    FirebaseFirestore.getInstance().collection("TimeSlots").document(ph).update(s,val).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if(task.isSuccessful()){
-                                Intent intent=new Intent(timeSlotInput.this,OrderSuccessful.class);
-                                startActivity(intent);
-                            }
-                            else{
-                                Toast.makeText(timeSlotInput.this, "Error occured!", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-
-                    }
-                else{
-                    Toast.makeText(timeSlotInput.this, "Error occured!", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+        Toast.makeText(timeSlotInput.this, "Choose a valid Time Slot !", Toast.LENGTH_SHORT).show();
     }
 }

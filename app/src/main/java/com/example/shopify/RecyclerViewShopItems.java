@@ -69,14 +69,11 @@ public class RecyclerViewShopItems extends AppCompatActivity {
                     DocumentSnapshot documentSnapshot=task.getResult();
                     Map<String,Object> map=documentSnapshot.getData();
                     HashMap<String,HashMap> hashMap=new HashMap<>();
-
-
                     for(Map.Entry<String,Object> entry:map.entrySet()){
                         if(entry.getKey().equals("Items")){
                             hashMap=(HashMap<String,HashMap>)entry.getValue();
                         }
                     }
-
                     for(Map.Entry<String,HashMap> entry:hashMap.entrySet()){
                         String key=(String)entry.getKey();
                         HashMap newHashMap=new HashMap();
@@ -84,7 +81,6 @@ public class RecyclerViewShopItems extends AppCompatActivity {
 
                         al.add(newHashMap);
                         recyclerViewAdpater.notifyDataSetChanged();
-
                     }
                 }
                 else{

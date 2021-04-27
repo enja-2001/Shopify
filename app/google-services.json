@@ -23,11 +23,19 @@
           }
         },
         {
-          "client_id": "495989011751-dok8uvaj97mf6lp5guo0qanluva1knr8.apps.googleusercontent.com",
+          "client_id": "495989011751-nho7edte58jrk5a8ln6nbvl44ecgg2rh.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.shopify",
-            "certificate_hash": "691017c0a16fbca9c5093e3cef83b7593fe406d5"
+            "certificate_hash": "992ef250fe273fe06d3b36a3644183d4af415168"
+          }
+        },
+        {
+          "client_id": "495989011751-s43el6oai2tck9er6gbo26pgtipnpiup.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.shopify",
+            "certificate_hash": "55f420c64e8256a3be8c0df680dc7fd94677a3f1"
           }
         },
         {

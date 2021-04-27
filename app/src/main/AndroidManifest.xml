@@ -8,13 +8,28 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".OrderSuccessful"></activity>
+        android:theme="@style/Theme.MyApplication">
+        <!-- <service -->
+        <!-- android:name=".java.MyFirebaseMessagingService" -->
+        <!-- android:exported="false"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="com.google.firebase.MESSAGING_EVENT" /> -->
+        <!-- </intent-filter> -->
+        <!-- </service> -->
+        <!-- <meta-data -->
+        <!-- android:name="com.google.firebase.messaging.default_notification_icon" -->
+        <!-- android:resource="@mipmap/ic_launcher" /> -->
+        <!-- <meta-data -->
+        <!-- android:name="com.google.firebase.messaging.default_notification_color" -->
+        <!-- android:resource="@color/colorAccent" /> -->
+        <activity android:name=".PaymentActivity" />
+        <activity android:name=".OrderSuccessful" />
         <activity android:name=".OrderConfirmationActivity" />
         <activity android:name=".timeSlotInput" />
         <activity android:name=".timeSlot" />
         <activity android:name=".RecyclerViewShopItems" />
         <activity android:name=".RecyclerViewShopList" />
+        <activity android:name=".OrderDetailsActivity" />
         <activity android:name=".AboutUsActivity" />
         <activity android:name=".UserProfileActivity" />
         <activity android:name=".OTPVerificationActivity" />
