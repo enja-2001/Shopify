@@ -78,8 +78,6 @@ class RecyclerViewAdapterShopItems extends RecyclerView.Adapter<RecyclerViewAdap
         }
 
         holder.tvItem.setText(key);
-
-        //converting inner hashmap into arraylist for inner adapter
         ArrayList<HashMap<String,HashMap>> inneral=new ArrayList<>();
 
         for(Map.Entry m:innerHashMap.entrySet()){
@@ -115,21 +113,6 @@ class RecyclerViewAdapterShopItems extends RecyclerView.Adapter<RecyclerViewAdap
 
 
         setAnimation(holder.itemView, position);
-
-//        holder.cardView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-//                SharedPreferences.Editor editor = preferences.edit();
-//
-//                editor.putString("Shop Phone Number",al.get(position).phoneNumber);
-//                editor.apply();
-//
-//                Intent intent=new Intent(context,RecyclerViewShopItems.class);
-//                intent.putExtra("Title",al.get(position).name);
-//                context.startActivity(intent);
-//            }
-//        });
 
     }
 

@@ -23,6 +23,7 @@ public class OrderSuccessful extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(OrderSuccessful.this,HomeActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         });

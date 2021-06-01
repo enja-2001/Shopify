@@ -85,13 +85,16 @@ public class timeSlot extends AppCompatActivity {
         int min = Integer.parseInt(s.substring(3, 5));
         String a="";
 
-        if(hr>=13){
-            hr=hr-12;
+        if(hr==12){
             a="PM";
         }
         else if(hr==0){
             hr=12;
             a="AM";
+        }
+        else if(hr>=13){
+            hr=hr-12;
+            a="PM";
         }
         else if(hr<=12){
             a="AM";
@@ -116,12 +119,10 @@ public class timeSlot extends AppCompatActivity {
         String t1 = convert12HourTo24HourTime(s1);
         String t2 = convert12HourTo24HourTime(s2);
 
-
         int hrOpen = Integer.parseInt(t1.substring(0, 2));
         int hrClose = Integer.parseInt(t2.substring(0, 2));
         int minOpen = Integer.parseInt(t1.substring(3, 5));
         int minClose = Integer.parseInt(t2.substring(3, 5));
-
 
         HashMap<String, Integer> hashMap = new HashMap<>();
         int hr = hrOpen;
@@ -171,9 +172,10 @@ public class timeSlot extends AppCompatActivity {
 
             temp2 = convert24HourTo12HourTime(strhr + ":" + strmin);
             hashMap.put(temp1+" - "+temp2,0);
+            temp1=temp2;
         }
 
-        FirebaseFirestore.getInstance().collection("TimeSlots").document("9999999999").set(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+        FirebaseFirestore.getInstance().collection("TimeSlots").document("4444444444").set(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){

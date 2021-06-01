@@ -25,6 +25,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 /**
@@ -64,10 +65,7 @@ public class Ongoing extends Fragment {
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
-
-//        adapter=new RecyclerViewOngoingAdapter(al,getContext());
-//        recyclerView.setAdapter(adapter);
+//        recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         phoneNumber = preferences.getString("Phone Number", null);
@@ -78,17 +76,34 @@ public class Ongoing extends Fragment {
 
                 if(task.isSuccessful()){
                     for(DocumentSnapshot documentSnapshot:task.getResult()) {
-                        ArrayList<OrderNode> alOrderNode=(ArrayList<OrderNode>)documentSnapshot.get("Order list");
+                        String orderId=documentSnapshot.getId();
+                        ArrayList<HashMap<String,Object>> alOrderNode=(ArrayList<HashMap<String,Object>>)documentSnapshot.get("Order list");
                         String timeSlot = documentSnapshot.getString("Time slot");
                         String shopPhoneNumber = documentSnapshot.getString("Shop phone number");
                         String shopName=documentSnapshot.getString("Shop Name");
                         String shopAddress=documentSnapshot.getString("Shop Address");
                         String date=documentSnapshot.getString("Date");
+                        String total=documentSnapshot.getString("Total price");
+                        String remaining=documentSnapshot.getString("Remaining payment");
 
-                        OngoingOrderModel ob=new OngoingOrderModel(shopName,alOrderNode,timeSlot,shopPhoneNumber,date,shopAddress);
+                        ArrayList<OrderNode> newal=new ArrayList<>();
+                        int len=alOrderNode.size();
+
+                        for(int i=0;i<=len-1;i++){
+                            HashMap<String,Object> map=alOrderNode.get(i);
+                            String category=(String)map.get("category");
+                            String description=(String)map.get("description");
+                            String image=(String)map.get("image");
+                            String price=(String)map.get("price");
+                            String quantity=(String)map.get("quantity");
+                            String subCategory=(String)map.get("subCategory");
+
+                            OrderNode orderNodeOb=new OrderNode(subCategory,description,price,image,quantity);
+                            newal.add(orderNodeOb);
+                        }
+
+                        OngoingOrderModel ob=new OngoingOrderModel(total,remaining,orderId,shopName,newal,timeSlot,shopPhoneNumber,date,shopAddress);
                         al.add(ob);
-
-                        Log.d("Inside","YES");
                     }
 
 

@@ -98,7 +98,7 @@ class RecyclerViewAdapterShopItems_InnerList extends RecyclerView.Adapter<Recycl
        else
            holder.tvDescription.setVisibility(View.GONE);
 
-       String quantity="";
+       String quantity="1";
         OrderNode orderNode=new OrderNode(key,innerHashMap.get("Description"),innerHashMap.get("Price"),innerHashMap.get("Image"),quantity);
 
         setAnimation(holder.itemView, position);

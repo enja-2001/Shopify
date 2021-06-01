@@ -28,20 +28,22 @@ class RecyclerViewOngoingAdapter extends RecyclerView.Adapter<RecyclerViewOngoin
     public static class MyViewHolder extends RecyclerView.ViewHolder {  //view holder class
 
         public TextView tvDate;
+        public TextView tvOrderId;
         public TextView tvShopName;
         public TextView tvPhoneNumber;
         public TextView tvAddress;
         public TextView tvTimeSlot;
-        public ConstraintLayout constraintLayout;
+        public CardView cardView;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvDate=(TextView)itemView.findViewById(R.id.tvNotificationDate);
-            tvAddress=(TextView)itemView.findViewById(R.id.tv_single_row_notification_profession);
-            tvPhoneNumber=(TextView) itemView.findViewById(R.id.tv_single_row_notification_order_id);
-            tvShopName=(TextView) itemView.findViewById(R.id.tv_single_row_notification_order_received);
-            tvTimeSlot=(TextView) itemView.findViewById(R.id.tv_single_row_notification_time_slot);
-            constraintLayout=itemView.findViewById(R.id.single_row_notification_constraint_layout);
+            tvDate=(TextView)itemView.findViewById(R.id.tvDate);
+            tvOrderId=(TextView)itemView.findViewById(R.id.tvOrderId);
+            tvAddress=(TextView)itemView.findViewById(R.id.tvAddres);
+            tvPhoneNumber=(TextView) itemView.findViewById(R.id.tvPhoneNumber);
+            tvShopName=(TextView) itemView.findViewById(R.id.tvShopName);
+            tvTimeSlot=(TextView) itemView.findViewById(R.id.tvTimeSlot);
+            cardView=itemView.findViewById(R.id.cardView);
         }
     }
 
@@ -65,12 +67,13 @@ class RecyclerViewOngoingAdapter extends RecyclerView.Adapter<RecyclerViewOngoin
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
         holder.tvAddress.setText(al.get(position).address);
+        holder.tvOrderId.setText("Order Id - "+al.get(position).orderId);
         holder.tvShopName.setText(al.get(position).shopName);
-        holder.tvPhoneNumber.setText(al.get(position).shopPhoneNumber);
+        holder.tvPhoneNumber.setText("Phone Number  +91 "+al.get(position).shopPhoneNumber);
         holder.tvDate.setText(al.get(position).date);
-        holder.tvTimeSlot.setText(al.get(position).timeSlot);
+        holder.tvTimeSlot.setText("Time Slot - "+al.get(position).timeSlot);
 
-        holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(context,OrderDetailsActivity.class);

@@ -9,7 +9,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="350dp"
-        android:layout_height="wrap_content"
+        android:layout_height="470dp"
         app:cardElevation="30dp"
         app:cardCornerRadius="30dp"
         app:cardBackgroundColor="#F4F4F4"
@@ -21,12 +21,25 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <TextView
+
+        <ScrollView
+                android:id="@+id/scrollView"
+                android:layout_width="match_parent"
+                android:layout_height="390dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <TextView
                 android:id="@+id/tvSelectDateTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="20dp"
                 android:text="Order Confirmation"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
@@ -35,15 +48,134 @@
 
             </TextView>
 
+            <TextView
+                android:id="@+id/tvConfirmationWorkerName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center|center_horizontal"
+                android:inputType="textMultiLine"
+                android:text="Shop Name"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvSelectDateTime" />
+
+            <TextView
+                android:id="@+id/tvConfirmationUserName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+
+                android:inputType="textMultiLine"
+                android:text="Address"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvConfirmationUserAddress" />
+
+            <TextView
+                android:id="@+id/tvConfirmationUserPhoneNumber"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:inputType="textMultiLine"
+
+                android:text="Phone number"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvConfirmationWorkerName" />
+
+            <TextView
+                android:id="@+id/tvConfirmationUserAddress"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+
+                android:layout_marginEnd="16dp"
+                android:textStyle="bold"
+                android:inputType="textMultiLine"
+                android:text="Time slot"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvConfirmationUserPhoneNumber" />
+
+            <TextView
+                android:id="@+id/tvConfirmationUserDateTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="30dp"
+
+                android:layout_marginEnd="16dp"
+                android:gravity="center|center_horizontal"
+                android:inputType="textMultiLine"
+                android:text="Items"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvConfirmationUserName" />
+
+            <TextView
+                android:id="@+id/tvPrice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="30dp"
+                android:gravity="center|center_horizontal"
+                android:inputType="textMultiLine"
+                android:text="Price (in Rs.)"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvConfirmationUserName" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tvConfirmationUserDateTime"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/tvTotal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:inputType="textMultiLine"
+                        android:text="Total"
+                        android:layout_marginTop="10dp"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+
+                    <TextView
+                        android:id="@+id/tvTotalPrice"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="45dp"
+                        android:layout_marginTop="10dp"
+                        android:inputType="textMultiLine"
+                        android:text="Price"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/tvTotal"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </ScrollView>
 
             <View
                 android:id="@+id/view"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
 
-                android:layout_marginBottom="52dp"
+                android:layout_marginTop="20dp"
                 android:background="@color/colorGrey2"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/scrollView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -54,7 +186,7 @@
                 android:layout_height="52dp"
                 android:text="Back"
                 android:textColor="@color/colorGreen"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view"
                 app:layout_constraintEnd_toStartOf="@+id/view2"
                 app:layout_constraintStart_toStartOf="parent" />
             <!--android:background="@drawable/my_button_3"-->
@@ -65,7 +197,7 @@
                 android:layout_height="52dp"
 
                 android:background="@color/colorGrey2"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -77,99 +209,11 @@
                 android:layout_height="52dp"
                 android:text="Place Order"
                 android:textColor="@color/colorGreen"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/view2" />
-
-            <!--            <Button-->
-            <!--                android:id="@+id/butMakePayment"-->
-            <!--                android:layout_width="186dp"-->
-            <!--                android:layout_height="38dp"-->
-            <!--                android:background="@drawable/my_button_two"-->
-            <!--                android:text="Proceed to pay"-->
-            <!--                android:textColor="@color/colorGreen"-->
-            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--                app:layout_constraintEnd_toEndOf="parent"-->
-            <!--                app:layout_constraintStart_toStartOf="parent"-->
-            <!--                app:layout_constraintTop_toTopOf="parent" />-->
-
-
-            <TextView
-                android:id="@+id/tvConfirmationWorkerName"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-
-                android:gravity="center|center_horizontal"
-                android:inputType="textMultiLine"
-                android:text="TextView"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvSelectDateTime" />
-
-            <TextView
-                android:id="@+id/tvConfirmationUserName"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-
-                android:inputType="textMultiLine"
-                android:text="TextView"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvConfirmationWorkerName" />
-
-
-            <TextView
-                android:id="@+id/tvConfirmationUserPhoneNumber"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:inputType="textMultiLine"
-
-                android:text="TextView"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvConfirmationUserName" />
-
-            <TextView
-                android:id="@+id/tvConfirmationUserAddress"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-
-                android:layout_marginEnd="16dp"
-                android:inputType="textMultiLine"
-                android:text="TextView"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvConfirmationUserPhoneNumber" />
-
-            <TextView
-                android:id="@+id/tvConfirmationUserDateTime"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
-
-                android:layout_marginEnd="16dp"
-                android:gravity="center|center_horizontal"
-                android:inputType="textMultiLine"
-                android:text="TextView"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvConfirmationUserAddress" />
-
-
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.cardview.widget.CardView>
 
 

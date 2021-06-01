@@ -30,6 +30,8 @@ import java.lang.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -44,13 +46,13 @@ public class timeSlotInput extends AppCompatActivity implements AdapterView.OnIt
     int maxCustomer;
     ArrayList alTimeSlot;
     ArrayList<Long> alValue;
-
     timeSlot ts = new timeSlot();
     public Map<String, String> time;
     public Map<String, String> person = new HashMap<>();
     public int maxPeople;
 
     Button butProceed;
+    Button butBack;
     Spinner spinner;
     ArrayList<OrderNode> alOrderList;
     SharedPreferences preferences;
@@ -66,6 +68,7 @@ public class timeSlotInput extends AppCompatActivity implements AdapterView.OnIt
         alOrderList= (ArrayList<OrderNode>) getIntent().getSerializableExtra("OrderList");
 
         butProceed=(Button)findViewById(R.id.butProceed);
+        butBack=findViewById(R.id.buttonBack);
         spinner=(Spinner)findViewById(R.id.spinner);
 
         FirebaseFirestore.getInstance().collection("Shops").document(ph).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -103,7 +106,6 @@ public class timeSlotInput extends AppCompatActivity implements AdapterView.OnIt
                 String s = spinner.getSelectedItem().toString();
 
                     String userPhoneNumber = preferences.getString("Phone Number", null);
-
                     Calendar calendar = Calendar.getInstance();
                     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMM,yyyy");
 
@@ -128,6 +130,7 @@ public class timeSlotInput extends AppCompatActivity implements AdapterView.OnIt
 
 
                                 Intent intent = new Intent(getApplicationContext(), OrderConfirmationActivity.class);
+//                                Intent intent = new Intent(getApplicationContext(), PaymentActivity.class);
                                 intent.putExtra("OrderHashMap", hashMap);
                                 startActivity(intent);
 
@@ -138,20 +141,57 @@ public class timeSlotInput extends AppCompatActivity implements AdapterView.OnIt
                     });
             }
         });
+
+        butBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void populateArrayList(HashMap<String,Object> hashMap){
         String key="";
         long val=0;
         alTimeSlot=new ArrayList<String>();
-        alValue=new ArrayList<>();
+        alValue=new ArrayList<Long>();
+
+        ArrayList<String> a1=new ArrayList<>(); //AM to AM
+        ArrayList<String> a2=new ArrayList<>(); //PM to PM
+        ArrayList<String> a3=new ArrayList<>();//AM to PM
+        ArrayList<String> a4=new ArrayList<>();//PM to PM for 12:00
+
 
         for(Map.Entry m:hashMap.entrySet()){
             key=(String)m.getKey();
             val=(long)m.getValue();
-            alTimeSlot.add(key);
+
             alValue.add(val);
+            int len=key.length();
+
+            if(key.charAt(len-2)=='A' && key.charAt(6)=='A')
+                a1.add(key);
+
+            else if(key.charAt(len-2)=='P' && key.charAt(6)=='P'){
+                if(key.startsWith("12"))
+                    a4.add(key);
+                else
+                    a2.add(key);
+            }
+            else
+                a3.add(key);
         }
+        Collections.sort(a1);
+        Collections.sort(a2);
+        Collections.sort(a3);
+        Collections.sort(a4);
+
+        a1.addAll(a3);
+        a1.addAll(a4);
+        a1.addAll(a2);
+
+        alTimeSlot=a1;
+
     }
 
     private void createSpinner(){

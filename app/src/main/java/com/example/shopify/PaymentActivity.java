@@ -1,5 +1,6 @@
 package com.example.shopify;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,78 +13,78 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class PaymentActivity extends AppCompatActivity {
 
+    HashMap<String,Object> hashMap;
+    String ph;
+    String timeSlot;
+    String totalPrice;
+    ArrayList<OrderNode> al;
+
     Button but3;
+    TextView tvAdvanced;
+    TextView tvTotal;
+
+    RadioGroup radioGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
 
+        hashMap= (HashMap<String,Object>) getIntent().getSerializableExtra("OrderHashMap");
+        ph=(String)hashMap.get("Shop phone number");
+        timeSlot=(String)hashMap.get("Time slot");
+        totalPrice=(String)hashMap.get("Total price");
+        al=(ArrayList<OrderNode>)hashMap.get("Order list");
+
         but3=findViewById(R.id.button2);
+        radioGroup=findViewById(R.id.radioGroup);
+        tvTotal=findViewById(R.id.tvTotalPrice);
+        tvAdvanced=findViewById(R.id.tvAdvancedPrice);
+
+        int advanced=(int)((40.0/100.0)*Integer.parseInt(totalPrice));
+        int remaining=Integer.parseInt(totalPrice)-advanced;
+
+        tvTotal.setText("Total Price - "+totalPrice);
+        tvAdvanced.setText("Advanced Payment - "+advanced);
+
+        hashMap.put("Remaining payment",""+remaining);
 
         but3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                payUsingUpi("1");
-            }
-        });
 
+                int radioId = radioGroup.getCheckedRadioButtonId();
 
+                switch(radioId){
+                    case R.id.radioButton1:
+                        payUsingUpi(""+advanced);
+                        break;
 
-        /*tvCurrentLocation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (ActivityCompat.checkSelfPermission(PlaceOrderAddress.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                    //---getLocation();
+                    case R.id.radioButton2:
+                        onTransactionSuccessful();
+                        break;
+                    case R.id.radioButton3:
+                        onTransactionFailure();
+                        break;
 
-                    fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Location> task) {
-                            Location location = task.getResult();
-                            if (location != null) {
-                                try {
-
-                                    Geocoder geocoder = new Geocoder(PlaceOrderAddress.this, Locale.getDefault());
-                                    List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-                                    etAddress.setText(addresses.get(0).getFeatureName() + ", " + addresses.get(0).getLocality() + ", " + addresses.get(0).getSubAdminArea() + ", " + addresses.get(0).getAdminArea() + ", " + addresses.get(0).getCountryName() + ", " + addresses.get(0).getPostalCode());
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-
-                            }
-                        }
-                    });
-
-
-                } else {
-                    ActivityCompat.requestPermissions(PlaceOrderAddress.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
                 }
             }
         });
-
-        ivLocationSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new PlaceAutocomplete.IntentBuilder()
-                        .accessToken("pk.eyJ1IjoiZW5qYS0yMDAxIiwiYSI6ImNrYnkyajU4eDB2dDMydGxnc2oxam41dDkifQ.i77C__pKEuCCagjXv89drQ")
-                        .placeOptions(PlaceOptions.builder()
-                                .backgroundColor(Color.parseColor("#EEEEEE"))
-                                .limit(10)
-                                .build(PlaceOptions.MODE_CARDS))
-                        .build(PlaceOrderAddress.this);
-                startActivityForResult(intent, 100);
-            }
-
-
-        });*/
-
     }
 
     private void payUsingUpi(String amt) {
@@ -91,7 +92,7 @@ public class PaymentActivity extends AppCompatActivity {
                 .buildUpon()
                 .appendQueryParameter("pa", "8927354558@ybl")
                 .appendQueryParameter("pn", "Snehasish Dhar")
-                .appendQueryParameter("tn", "Testing")
+                .appendQueryParameter("tn", "")
                 .appendQueryParameter("am", amt)
                 .appendQueryParameter("cu", "INR")
                 .build();
@@ -168,20 +169,20 @@ public class PaymentActivity extends AppCompatActivity {
                 //Code to handle successful transaction here.
                 Toast.makeText(PaymentActivity.this, "Transaction successful.", Toast.LENGTH_SHORT).show();
                 Log.d("UPI", "responseStr: "+approvalRefNo);
-                Intent intent=new Intent(PaymentActivity.this,OrderSuccessful.class);
-                startActivity(intent);
+
+                onTransactionSuccessful();
             }
             else if("Payment cancelled by user.".equals(paymentCancel)) {
                 Toast.makeText(PaymentActivity.this, "Payment cancelled by user.", Toast.LENGTH_SHORT).show();
+                onTransactionFailure();
             }
             else {
-                Toast.makeText(PaymentActivity.this, "Transaction failed.Please try again", Toast.LENGTH_SHORT).show();
+                onTransactionFailure();
             }
         } else {
             Toast.makeText(PaymentActivity.this, "Internet connection is not available. Please check and try again", Toast.LENGTH_SHORT).show();
+            onTransactionFailure();
         }
-        Intent intent=new Intent(PaymentActivity.this,HomeActivity.class);
-        startActivity(intent);
     }
 
     public static boolean isConnectionAvailable(Context context) {
@@ -195,5 +196,50 @@ public class PaymentActivity extends AppCompatActivity {
             }
         }
         return false;
+    }
+
+    private void onTransactionSuccessful(){
+        FirebaseFirestore.getInstance().collection("Ongoing Orders").document().set(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    updateTimeSlot(timeSlot);
+                }
+                else{
+                    Toast.makeText(PaymentActivity.this, "Error occured!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+    private void onTransactionFailure(){
+        Toast.makeText(PaymentActivity.this, "Transaction failed.Please try again", Toast.LENGTH_SHORT).show();
+        Intent intent=new Intent(PaymentActivity.this,RecyclerViewShopItems.class);
+        intent.putExtra("Title",""+hashMap.get("Shop Name"));
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+    private void updateTimeSlot(String s) {
+        FirebaseFirestore.getInstance().collection("TimeSlots").document(ph).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    long val = task.getResult().getLong(s);
+                    val++;
+                    FirebaseFirestore.getInstance().collection("TimeSlots").document(ph).update(s, val).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Intent intent=new Intent(PaymentActivity.this,OrderSuccessful.class);
+                                startActivity(intent);
+                            } else {
+                                Toast.makeText(PaymentActivity.this, "Error occured!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                } else {
+                    Toast.makeText(PaymentActivity.this, "Error occured!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }

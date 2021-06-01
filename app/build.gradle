@@ -30,7 +30,6 @@ android {
             keyAlias properties.getProperty('keyAlias')
             storePassword properties.getProperty('storePassword')
             keyPassword properties.getProperty('keyPassword')
-
         }
     }
 

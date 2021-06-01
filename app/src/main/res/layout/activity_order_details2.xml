@@ -9,7 +9,7 @@
         android:id="@+id/workerDetailsScrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonWorkerDetails"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,28 +71,41 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="24dp"
-                        android:text="Shop Details"
+                        android:text="Order Details"
                         android:textColor="@android:color/black"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"/>
+                    <TextView
+                        android:id="@+id/textView35"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="32dp"
+                        android:text="Order Id"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView30" />
 
                     <TextView
                         android:id="@+id/textView31"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="64dp"
+                        android:layout_marginStart="30dp"
                         android:layout_marginTop="32dp"
-                        android:text="Name"
+                        android:text="Time Slot"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView30" />
+                        app:layout_constraintTop_toBottomOf="@+id/textView35" />
 
                     <TextView
                         android:id="@+id/textView32"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="64dp"
+                        android:layout_marginStart="30dp"
                         android:layout_marginTop="32dp"
-                        android:text="Address"
+                        android:text="Shop Name"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView31" />
 
@@ -100,7 +113,7 @@
                         android:id="@+id/textView33"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="64dp"
+                        android:layout_marginStart="30dp"
                         android:layout_marginTop="32dp"
                         android:text="Phone number"
                         app:layout_constraintStart_toStartOf="parent"
@@ -110,55 +123,72 @@
                         android:id="@+id/textView34"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="64dp"
+                        android:layout_marginStart="30dp"
                         android:layout_marginTop="32dp"
-                        android:text="Time slot"
+                        android:text="Address"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView33" />
 
+                    <TextView
+                        android:id="@+id/tvOrderId"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:text="TextView"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textView35"
+                        app:layout_constraintStart_toStartOf="@+id/guideline2"
+                        app:layout_constraintEnd_toEndOf="parent"/>
 
                     <TextView
                         android:id="@+id/tvNameWorkerDetails"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="64dp"
+                        android:layout_marginStart="30dp"
                         android:text="TextView"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView31"
                         app:layout_constraintStart_toStartOf="@+id/guideline2" />
 
                     <TextView
                         android:id="@+id/tvAgeWorkerDetails"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="64dp"
+                        android:layout_marginStart="30dp"
                         android:text="TextView"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView32"
                         app:layout_constraintStart_toStartOf="@+id/guideline2" />
 
                     <TextView
                         android:id="@+id/tvGenderWorkerDetails"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="64dp"
+                        android:layout_marginStart="30dp"
                         android:text="TextView"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView33"
                         app:layout_constraintStart_toStartOf="@+id/guideline2" />
 
                     <TextView
                         android:id="@+id/tvProfessionWorkerDetails"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="64dp"
+                        android:layout_marginStart="30dp"
                         android:text="TextView"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView34"
-                        app:layout_constraintStart_toStartOf="@+id/guideline2" />
+                        app:layout_constraintStart_toStartOf="@+id/guideline2"
+                        app:layout_constraintEnd_toEndOf="parent"/>
 
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guideline2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        app:layout_constraintGuide_percent="0.45" />
+                        app:layout_constraintGuide_percent="0.4" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
@@ -168,15 +198,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:paddingRight="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardViewWorkerDetails1">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingBottom="20dp">
+                    android:layout_height="match_parent">
 
 
                     <TextView
@@ -191,6 +219,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -198,31 +227,100 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView13"/>
 
-                    <androidx.constraintlayout.widget.Guideline
-                        android:id="@+id/guideline3"
-                        android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/tvTotal"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        app:layout_constraintGuide_percent="0.45" />
+                        android:layout_marginStart="20dp"
+                        android:inputType="textMultiLine"
+                        android:text="Total Price"
+                        android:layout_marginTop="10dp"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+
+                    <TextView
+                        android:id="@+id/tvTotalPrice"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="45dp"
+                        android:layout_marginTop="10dp"
+                        android:inputType="textMultiLine"
+                        android:text="Price"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/tvTotal"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvAdvanced"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:inputType="textMultiLine"
+                        android:text="Advanced Payment"
+                        android:layout_marginTop="10dp"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvTotal" />
+
+                    <TextView
+                        android:id="@+id/tvAdvancedPrice"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="45dp"
+                        android:layout_marginTop="10dp"
+                        android:inputType="textMultiLine"
+                        android:text="Price"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/tvAdvanced"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <View
+                        android:id="@+id/view3"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="15dp"
+                        android:background="#9AA5A5A5"
+                        app:layout_constraintTop_toBottomOf="@id/tvAdvanced"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+
+                    <TextView
+                        android:id="@+id/tvRemaining"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:inputType="textMultiLine"
+                        android:text="Payment Due"
+                        android:paddingBottom="30dp"
+                        android:layout_marginTop="10dp"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/view3" />
+
+                    <TextView
+                        android:id="@+id/tvRemainingPrice"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="45dp"
+                        android:layout_marginTop="10dp"
+                        android:inputType="textMultiLine"
+                        android:text="Price"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/tvRemaining"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
-
-
-
-
-
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
-    <Button
-        android:id="@+id/buttonWorkerDetails"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Order Placed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
