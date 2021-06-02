@@ -70,7 +70,10 @@ public class Ongoing extends Fragment {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
         phoneNumber = preferences.getString("Phone Number", null);
 
-        FirebaseFirestore.getInstance().collection("Ongoing Orders").whereEqualTo("User phone number",phoneNumber).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        FirebaseFirestore.getInstance().collection("Ongoing Orders")
+                .whereEqualTo("User phone number",phoneNumber)
+                .whereEqualTo("Status","Ongoing")
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
 

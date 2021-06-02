@@ -126,6 +126,7 @@ public class timeSlotInput extends AppCompatActivity implements AdapterView.OnIt
                                 hashMap.put("User address", "");
                                 hashMap.put("Shop Name", shopName);
                                 hashMap.put("Shop Address", shopAddress);
+                                hashMap.put("Status","Ongoing");
                                 hashMap.put("Date", simpleDateFormat.format(calendar.getTime()));
 
 

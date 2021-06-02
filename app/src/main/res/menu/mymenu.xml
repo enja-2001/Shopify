@@ -4,10 +4,7 @@
 
     <item android:id="@+id/item3"
         android:title="Home"
-        android:icon="@drawable/home">
-        <!--android:orderInCategory="1"-->
-
-    </item>
+        android:icon="@drawable/home"/>
 
 
 
@@ -23,17 +20,11 @@
 
     <item android:id="@+id/item10"
         android:title="Orders"
-        android:icon="@drawable/orders">
+        android:icon="@drawable/orders"/>
+<!--    <item android:id="@+id/item1"-->
+<!--        android:title="Notifications"-->
+<!--        android:icon="@drawable/notification">-->
 
-    </item>
-    <item android:id="@+id/item1"
-        android:title="Notifications"
-        android:icon="@drawable/notification">
-
-    </item>
-
-
-
-
+<!--    </item>-->
 
 </menu>
