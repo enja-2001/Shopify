@@ -14,8 +14,6 @@ import com.example.shopify.R;
 import com.example.shopify.TimeSlots;
 import com.google.firebase.firestore.DocumentSnapshot;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 import java.util.zip.Inflater;
 
@@ -34,9 +32,8 @@ public class TimeSlotAdapter extends RecyclerView.Adapter<TimeSlotAdapter.TimeHo
 
 
     @NonNull
-    @NotNull
     @Override
-    public TimeHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
+    public TimeHolder onCreateViewHolder(@NonNull  ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.time_card, parent, false);
         return new TimeHolder(view);
     }
@@ -53,10 +50,10 @@ public class TimeSlotAdapter extends RecyclerView.Adapter<TimeSlotAdapter.TimeHo
 
 
     @Override
-    public void onBindViewHolder(@NonNull @NotNull TimeSlotAdapter.TimeHolder holder, int position) {
+    public void onBindViewHolder(@NonNull TimeSlotAdapter.TimeHolder holder, int position) {
 
         holder.time.setText(time.get(position).getTime());
-        holder.cust_count.setText(Integer.toString(time.get(position).getValue()) + " customers");
+        holder.cust_count.setText(time.get(position).getValue()+ " customers");
 
     }
 
@@ -68,7 +65,7 @@ public class TimeSlotAdapter extends RecyclerView.Adapter<TimeSlotAdapter.TimeHo
     public class TimeHolder extends RecyclerView.ViewHolder {
 
         TextView cust_count, time;
-        public TimeHolder(@NonNull @NotNull View itemView) {
+        public TimeHolder(@NonNull View itemView) {
             super(itemView);
             time = itemView.findViewById(R.id.Time);
             cust_count = itemView.findViewById(R.id.count);

@@ -12,28 +12,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-        <activity android:name=".Cust_Details"
-            android:launchMode="singleTop"
-            >
 
-        </activity>
-        <activity android:name=".SK_Dashboard"
-            android:launchMode="singleTop"/>
-        <activity android:name=".ShopkeeperLogin"
-            android:launchMode="singleTop"
-            /> <!-- <service -->
-        <!-- android:name=".java.MyFirebaseMessagingService" -->
-        <!-- android:exported="false"> -->
-        <!-- <intent-filter> -->
-        <!-- <action android:name="com.google.firebase.MESSAGING_EVENT" /> -->
-        <!-- </intent-filter> -->
-        <!-- </service> -->
-        <!-- <meta-data -->
-        <!-- android:name="com.google.firebase.messaging.default_notification_icon" -->
-        <!-- android:resource="@mipmap/ic_launcher" /> -->
-        <!-- <meta-data -->
-        <!-- android:name="com.google.firebase.messaging.default_notification_color" -->
-        <!-- android:resource="@color/colorAccent" /> -->
+        <activity android:name=".Cust_Details"/>
+        <activity android:name=".SK_Dashboard"/>
+        <activity android:name=".ShopkeeperLogin"/>
+
+        <activity android:name=".ShopkeeperOrderDetails"/>
+        <activity android:name=".ShopkeeperRecyclerView"/>
+
         <activity android:name=".PaymentActivity" />
         <activity android:name=".OrderSuccessful" />
         <activity android:name=".OrderConfirmationActivity" />

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,10 +25,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Map;
 
 public class sk_home extends Fragment {
 
@@ -47,154 +49,102 @@ public class sk_home extends Fragment {
 
         return root;
     }
-    public String convert12HourTo24HourTime(String s) { //input format "hh:mm a"  output format "hh:mm"
-        int hr = Integer.parseInt(s.substring(0, 2));
-        int min = Integer.parseInt(s.substring(3, 5));
-        char a = s.charAt(6);
-
-        if (a == 'P' && hr != 12)
-            hr = hr + 12;
-        else if (a == 'A' && hr == 12)
-            hr = 0;
-
-        String strhr = "";
-        if (hr >= 0 && hr <= 9)
-            strhr = "0" + hr;
-        else
-            strhr = "" + hr;
-
-        String strmin = "";
-        if (min >= 0 && min <= 9)
-            strmin = "0" + min;
-        else
-            strmin = "" + min;
-
-        return (strhr + ":" + strmin);
-
-    }
-
-    public String convert24HourTo12HourTime(String s) { //input format "hh:mm"  output format "hh:mm a"
-
-        int hr = Integer.parseInt(s.substring(0, 2));
-        int min = Integer.parseInt(s.substring(3, 5));
-        String a="";
-
-        if(hr==12){
-            a="PM";
-        }
-        else if(hr==0){
-            hr=12;
-            a="AM";
-        }
-        else if(hr>=13){
-            hr=hr-12;
-            a="PM";
-        }
-        else if(hr<=12){
-            a="AM";
-        }
-
-        String strhr = "";
-        if (hr >= 0 && hr <= 9)
-            strhr = "0" + hr;
-        else
-            strhr = "" + hr;
-
-        String strmin = "";
-        if (min >= 0 && min <= 9)
-            strmin = "0" + min;
-        else
-            strmin = "" + min;
-
-        return (strhr + ":" + strmin+" "+a);
-    }
 
     private void getData() {
 
         String ph = SharedPrefManager.getInstance(getContext()).getShopPH();
-        FirebaseFirestore.getInstance().collection("Timeslots").document(ph).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//        Log.d("shopPHONE",ph);
+        FirebaseFirestore.getInstance().collection("TimeSlots").document(ph).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
-            public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
-                DocumentSnapshot doc = task.getResult();
-                String s1 = "09:00 AM";
-                String s2 = "10:00 PM";
-                String t1 = convert12HourTo24HourTime(s1);
-                String t2 = convert12HourTo24HourTime(s2);
-
-                int hrOpen = Integer.parseInt(t1.substring(0, 2));
-                int hrClose = Integer.parseInt(t2.substring(0, 2));
-                int minOpen = Integer.parseInt(t1.substring(3, 5));
-                int minClose = Integer.parseInt(t2.substring(3, 5));
-
-                int hr = hrOpen;
-                int min = minOpen;
-                String temp1 = s1;
-                String temp2 = "";
-
-                while (hr < hrClose) {
-                    min = min + 15;
-                    if (min >= 60) {
-                        min = min - 60;
-                        hr = hr + 1;
-                    }
-
-                    String strhr = "";
-                    if (hr >= 0 && hr <= 9)
-                        strhr = "0" + hr;
-                    else
-                        strhr = "" + hr;
-
-                    String strmin = "";
-                    if (min >= 0 && min <= 9)
-                        strmin = "0" + min;
-                    else
-                        strmin = "" + min;
-
-                    temp2 = convert24HourTo12HourTime(strhr + ":" + strmin);
-                    int cust = Integer.parseInt(doc.getString(temp1 + " - " + temp2));
-                    time.add(new TimeSlots(temp1 + " - " + temp2, cust));
-                    temp1 = temp2;
-
-                }
-                //   hr=hrClose
-                while (min < minClose) {
-                    min = min + 15;
-
-                    String strhr = "";
-                    if (hr >= 0 && hr <= 9)
-                        strhr = "0" + hr;
-                    else
-                        strhr = "" + hr;
-
-                    String strmin = "";
-                    if (min >= 0 && min <= 9)
-                        strmin = "0" + min;
-                    else
-                        strmin = "" + min;
-
-                    temp2 = convert24HourTo12HourTime(strhr + ":" + strmin);
-                    int cust = Integer.parseInt(doc.getString(temp1 + " - " + temp2));
-                    time.add(new TimeSlots(temp1 + " - " + temp2, cust));
-                    temp1 = temp2;
-
-                }
-            recyclerView.setHasFixedSize(true);
-                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
-                recyclerView.setLayoutManager(layoutManager);
-                adapter = new TimeSlotAdapter(time, getContext());
-                recyclerView.setAdapter(adapter);
-
-                adapter.setOnClickListener(new TimeSlotAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(int position) {
-
-                        Intent intent = new Intent(requireActivity(), Cust_Details.class);
-                        intent.putExtra("time", time.get(position).getTime());
-                        intent.putExtra("value", time.get(position).getValue());
-                        startActivity(intent);
-                    }
-                });
+            public void onComplete(@NonNull  Task<DocumentSnapshot> task) {
+                DocumentSnapshot documentSnapshot=task.getResult();
+                HashMap<String,Object> hashMap=(HashMap<String, Object>)documentSnapshot.getData();
+                populateArrayList(hashMap);
             }
         });
+    }
+
+
+    private void populateArrayList(HashMap<String,Object> hashMap){
+        String key="";
+        long val=0;
+        TimeSlots ob;
+
+        ArrayList<TimeSlots> a1=new ArrayList<>(); //AM to AM
+        ArrayList<TimeSlots> a2=new ArrayList<>(); //PM to PM
+        ArrayList<TimeSlots> a3=new ArrayList<>();//AM to PM
+        ArrayList<TimeSlots> a4=new ArrayList<>();//PM to PM for 12:00
+
+
+        for(Map.Entry m:hashMap.entrySet()){
+            key=(String)m.getKey();
+            val=(long)m.getValue();
+
+            ob=new TimeSlots(key,val);
+
+            int len=key.length();
+
+            if(key.charAt(len-2)=='A' && key.charAt(6)=='A')
+                a1.add(ob);
+
+            else if(key.charAt(len-2)=='P' && key.charAt(6)=='P'){
+                if(key.startsWith("12"))
+                    a4.add(ob);
+                else
+                    a2.add(ob);
+            }
+            else
+                a3.add(ob);
+        }
+
+        Collections.sort(a1, new Comparator<TimeSlots>() {
+            @Override
+            public int compare(TimeSlots o1, TimeSlots o2) {
+                return o1.getTime().compareTo(o2.getTime());
+            }
+        });
+
+        Collections.sort(a2, new Comparator<TimeSlots>() {
+            @Override
+            public int compare(TimeSlots o1, TimeSlots o2) {
+                return o1.getTime().compareTo(o2.getTime());
+            }
+        });
+        Collections.sort(a3, new Comparator<TimeSlots>() {
+            @Override
+            public int compare(TimeSlots o1, TimeSlots o2) {
+                return o1.getTime().compareTo(o2.getTime());
+            }
+        });
+        Collections.sort(a4, new Comparator<TimeSlots>() {
+            @Override
+            public int compare(TimeSlots o1, TimeSlots o2) {
+                return o1.getTime().compareTo(o2.getTime());
+            }
+        });
+
+        a1.addAll(a3);
+        a1.addAll(a4);
+        a1.addAll(a2);
+
+        time=a1;
+
+        recyclerView.setHasFixedSize(true);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
+        adapter = new TimeSlotAdapter(time, getContext());
+        recyclerView.setAdapter(adapter);
+
+//        adapter.setOnClickListener(new TimeSlotAdapter.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(int position) {
+//
+//                Intent intent = new Intent(requireActivity(), Cust_Details.class);
+//                intent.putExtra("time", time.get(position).getTime());
+//                intent.putExtra("value", time.get(position).getValue());
+//                startActivity(intent);
+//            }
+//        });
+
     }
 }

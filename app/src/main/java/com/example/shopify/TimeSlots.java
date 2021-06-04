@@ -2,9 +2,9 @@ package com.example.shopify;
 
 public class TimeSlots {
     String time;
-    int value;
+    long value;
 
-    public TimeSlots(String time, int value) {
+    public TimeSlots(String time, long value) {
         this.time = time;
         this.value = value;
     }
@@ -14,7 +14,7 @@ public class TimeSlots {
         return time;
     }
 
-    public int getValue()
+    public long getValue()
     {
         return value;
     }

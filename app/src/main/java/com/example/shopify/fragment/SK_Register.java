@@ -10,17 +10,20 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.shopify.R;
 import com.example.shopify.SK_Dashboard;
 import com.example.shopify.helper.SharedPrefManager;
+import com.example.shopify.timeSlot;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -34,9 +37,11 @@ public class SK_Register extends Fragment {
 
     EditText nametxt, shopNametxt, shopAddrtxt, emailtxt, passtxt, pintxt, phonetxt, cat;
     ProgressBar progressBar;
-    Button login, register;
+    TextView tvProfile;
+    Button register;
+    TextView login;
     String name, email, shopName, shopAddr, pass, pincode, phone, category;
-    SharedPrefManager sharedPrefManager;
+//    SharedPrefManager sharedPrefManager;
     FirebaseAuth auth;
 
 
@@ -55,9 +60,12 @@ public class SK_Register extends Fragment {
         pintxt = root.findViewById(R.id.pincode);
         phonetxt = root.findViewById(R.id.phone);
         cat = root.findViewById(R.id.category);
+        tvProfile=root.findViewById(R.id.profile);
 
-        login = root.findViewById(R.id.loginBut);
+        login = root.findViewById(R.id.butLogin);
         register = root.findViewById(R.id.register);
+
+        auth = FirebaseAuth.getInstance();
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,20 +77,28 @@ public class SK_Register extends Fragment {
                 pincode = pintxt.getText().toString();
                 phone = phonetxt.getText().toString();
                 category = cat.getText().toString();
+                shopAddr = shopAddrtxt.getText().toString();
+
+
                 emailtxt.setVisibility(View.INVISIBLE);
                 nametxt.setVisibility(View.INVISIBLE);
                 shopAddrtxt.setVisibility(View.INVISIBLE);
                 shopNametxt.setVisibility(View.INVISIBLE);
                 passtxt.setVisibility(View.INVISIBLE);
-                register.setVisibility(View.INVISIBLE);
+                pintxt.setVisibility(View.INVISIBLE);
+                cat.setVisibility(View.INVISIBLE);
+                phonetxt.setVisibility(View.INVISIBLE);
                 login.setVisibility(View.INVISIBLE);
+                register.setVisibility(View.INVISIBLE);
+                tvProfile.setVisibility(View.INVISIBLE);
 
 
                 progressBar.setVisibility(View.VISIBLE);
-                sharedPrefManager = new SharedPrefManager(getContext());
-                if (TextUtils.isEmpty(email) || TextUtils.isEmpty(pass) || TextUtils.isEmpty(name) || TextUtils.isEmpty(shopName) || TextUtils.isEmpty(shopAddr)) {
+//                sharedPrefManager = new SharedPrefManager(getContext());
+
+                if(email.isEmpty() || pass.isEmpty() || name.isEmpty() || shopName.isEmpty() || shopAddr.isEmpty() || phone.isEmpty() || category.isEmpty() || pincode.isEmpty())
                     Toast.makeText(getContext(), "Please fill all the fields", Toast.LENGTH_LONG).show();
-                } else {
+                else {
                     auth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener((Activity) getContext(), new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -93,13 +109,18 @@ public class SK_Register extends Fragment {
                                 Intent intent = new Intent(getContext(), SK_Dashboard.class);
                                 startActivity(intent);
                             } else {
+
                                 emailtxt.setVisibility(View.VISIBLE);
                                 nametxt.setVisibility(View.VISIBLE);
-                                shopNametxt.setVisibility(View.VISIBLE);
                                 shopAddrtxt.setVisibility(View.VISIBLE);
+                                shopNametxt.setVisibility(View.VISIBLE);
                                 passtxt.setVisibility(View.VISIBLE);
-                                register.setVisibility(View.VISIBLE);
+                                pintxt.setVisibility(View.VISIBLE);
+                                cat.setVisibility(View.VISIBLE);
+                                phonetxt.setVisibility(View.VISIBLE);
                                 login.setVisibility(View.VISIBLE);
+                                register.setVisibility(View.VISIBLE);
+                                tvProfile.setVisibility(View.VISIBLE);
                                 progressBar.setVisibility(View.GONE);
 
                                 Toast.makeText(getContext(), "Registration Failed", Toast.LENGTH_LONG).show();
@@ -116,10 +137,11 @@ public class SK_Register extends Fragment {
             public void onClick(View view) {
                 Fragment fragment = new SK_Login();
                 FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().setCustomAnimations(R.anim.fade_out, R.anim.fade_in);
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.container_login, fragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
+
                 emailtxt.setVisibility(View.INVISIBLE);
                 nametxt.setVisibility(View.INVISIBLE);
                 shopNametxt.setVisibility(View.INVISIBLE);
@@ -153,5 +175,143 @@ public class SK_Register extends Fragment {
         data.put("Phone number", phone);
         data.put("Shopkeeper", name);
         FirebaseFirestore.getInstance().collection("Shops").document(phone).set(data);
+
+        addTimeSlots(openTime,closingTime,phone);
     }
+
+    private void addTimeSlots(String s1,String s2,String phone){
+        String t1 = convert12HourTo24HourTime(s1);
+        String t2 = convert12HourTo24HourTime(s2);
+
+        int hrOpen = Integer.parseInt(t1.substring(0, 2));
+        int hrClose = Integer.parseInt(t2.substring(0, 2));
+        int minOpen = Integer.parseInt(t1.substring(3, 5));
+        int minClose = Integer.parseInt(t2.substring(3, 5));
+
+        HashMap<String, Integer> hashMap = new HashMap<>();
+        int hr = hrOpen;
+        int min = minOpen;
+        String temp1 =s1;
+        String temp2="";
+
+        while (hr < hrClose) {
+            min = min + 15;
+            if (min >= 60) {
+                min = min - 60;
+                hr = hr + 1;
+            }
+
+            String strhr = "";
+            if (hr >= 0 && hr <= 9)
+                strhr = "0" + hr;
+            else
+                strhr = "" + hr;
+
+            String strmin = "";
+            if (min >= 0 && min <= 9)
+                strmin = "0" + min;
+            else
+                strmin = "" + min;
+
+            temp2 = convert24HourTo12HourTime(strhr + ":" + strmin);
+            hashMap.put(temp1+" - "+temp2,0);
+            temp1=temp2;
+
+        }
+        //   hr=hrClose
+        while (min < minClose) {
+            min = min + 15;
+
+            String strhr = "";
+            if (hr >= 0 && hr <= 9)
+                strhr = "0" + hr;
+            else
+                strhr = "" + hr;
+
+            String strmin = "";
+            if (min >= 0 && min <= 9)
+                strmin = "0" + min;
+            else
+                strmin = "" + min;
+
+            temp2 = convert24HourTo12HourTime(strhr + ":" + strmin);
+            hashMap.put(temp1+" - "+temp2,0);
+            temp1=temp2;
+        }
+
+        FirebaseFirestore.getInstance().collection("TimeSlots").document(phone).set(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    Toast.makeText(getContext(), "TimeSlots added successfully", Toast.LENGTH_SHORT).show();
+                }
+                else
+                    Toast.makeText(getContext(), "Error occured!", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
+
+    public String convert12HourTo24HourTime(String s) { //input format "hh:mm a"  output format "hh:mm"
+        int hr = Integer.parseInt(s.substring(0, 2));
+        int min = Integer.parseInt(s.substring(3, 5));
+        char a = s.charAt(6);
+
+        if (a == 'P' && hr != 12)
+            hr = hr + 12;
+        else if (a == 'A' && hr == 12)
+            hr = 0;
+
+        String strhr = "";
+        if (hr >= 0 && hr <= 9)
+            strhr = "0" + hr;
+        else
+            strhr = "" + hr;
+
+        String strmin = "";
+        if (min >= 0 && min <= 9)
+            strmin = "0" + min;
+        else
+            strmin = "" + min;
+
+        return (strhr + ":" + strmin);
+
+    }
+
+    public String convert24HourTo12HourTime(String s) { //input format "hh:mm"  output format "hh:mm a"
+
+        int hr = Integer.parseInt(s.substring(0, 2));
+        int min = Integer.parseInt(s.substring(3, 5));
+        String a="";
+
+        if(hr==12){
+            a="PM";
+        }
+        else if(hr==0){
+            hr=12;
+            a="AM";
+        }
+        else if(hr>=13){
+            hr=hr-12;
+            a="PM";
+        }
+        else if(hr<=12){
+            a="AM";
+        }
+
+        String strhr = "";
+        if (hr >= 0 && hr <= 9)
+            strhr = "0" + hr;
+        else
+            strhr = "" + hr;
+
+        String strmin = "";
+        if (min >= 0 && min <= 9)
+            strmin = "0" + min;
+        else
+            strmin = "" + min;
+
+        return (strhr + ":" + strmin+" "+a);
+    }
+
 }

@@ -17,8 +17,7 @@ import com.example.shopify.navigation_fragments.sk_add;
 import com.example.shopify.navigation_fragments.sk_home;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
-
-import org.jetbrains.annotations.NotNull;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class SK_Dashboard extends AppCompatActivity {
 
@@ -41,16 +40,20 @@ public class SK_Dashboard extends AppCompatActivity {
         name = findViewById(R.id.name);
         shopName = findViewById(R.id.shopName);
         shopAddr = findViewById(R.id.shopAddr);
+        nav=findViewById(R.id.bottomnav);
         sharedPrefManager = new SharedPrefManager(SK_Dashboard.this);
         name.setText(sharedPrefManager.getName());
         shopName.setText(sharedPrefManager.getShopName());
         shopAddr.setText(sharedPrefManager.getShopAddress());
 
-
+        if (savedInstanceState == null) {
+            sk_home sk = new sk_home();
+            getSupportFragmentManager().beginTransaction().replace(R.id.container_dashboard, sk).commit();
+        }
 
         nav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem menuItem) {
+            public boolean onNavigationItemSelected(@NonNull  MenuItem menuItem) {
                 switch (menuItem.getItemId())
                 {
                     case R.id.time:
@@ -91,8 +94,6 @@ public class SK_Dashboard extends AppCompatActivity {
         });
 
     }
-
-
 
     @Override
     public void onBackPressed() {

@@ -15,8 +15,6 @@ import com.example.shopify.TimeSlots;
 import com.example.shopify.helper.Orders;
 import com.google.firebase.firestore.DocumentSnapshot;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 import java.util.zip.Inflater;
 
@@ -35,9 +33,8 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Custom
 
 
     @NonNull
-    @NotNull
     @Override
-    public CustomerHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
+    public CustomerHolder onCreateViewHolder(@NonNull  ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cust_card, parent, false);
         return new CustomerHolder(view);
     }
@@ -54,7 +51,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Custom
 
 
     @Override
-    public void onBindViewHolder(@NonNull @NotNull CustomerAdapter.CustomerHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CustomerAdapter.CustomerHolder holder, int position) {
         holder.cust_phone.setText(time.get(position).getUserph());
         holder.rempay.setText(time.get(position).getRempay());
 
@@ -68,7 +65,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Custom
     public class CustomerHolder extends RecyclerView.ViewHolder {
 
         TextView cust_phone, rempay;
-        public CustomerHolder(@NonNull @NotNull View itemView) {
+        public CustomerHolder(@NonNull View itemView) {
             super(itemView);
             cust_phone = itemView.findViewById(R.id.custphone);
             rempay = itemView.findViewById(R.id.pay);

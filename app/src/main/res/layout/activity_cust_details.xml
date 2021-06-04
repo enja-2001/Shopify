@@ -36,7 +36,7 @@
             android:paddingBottom="20dp"
             android:text=""
             android:textAlignment="center"
-            android:textColor="@color/quantum_black_100"
+            android:textColor="@android:color/black"
             android:textSize="25sp"
             android:textStyle="bold" />
 

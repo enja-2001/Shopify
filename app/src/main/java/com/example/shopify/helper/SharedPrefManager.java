@@ -89,14 +89,8 @@ public class SharedPrefManager {
 
     public void logout()
     {
-        setName(null);
-
-        setEmail(null);
-        setShopName(null);
-        setShopAddress(null);
         editor.putBoolean(KEY_LOGIN, false);
         editor.apply();
-
     }
 
     public String getName()

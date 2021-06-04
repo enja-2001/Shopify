@@ -40,7 +40,7 @@ public class OTPActivity extends AppCompatActivity {
     TextView tv1;
     TextView tv2;
     TextView tv3;
-    Button shopBut;
+    TextView shopBut;
 
 
 
