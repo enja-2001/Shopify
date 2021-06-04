@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/time"
+        android:title="Home"
+        android:icon="@drawable/home"/>
+
+    <item android:id="@+id/add"
+        android:title="Add Items"
+        android:icon="@drawable/ic_baseline_add_items"/>
+
+    <item android:id="@+id/covid"
+        android:title="COVID"
+        android:icon="@drawable/ic_baseline_emergency_24"/>
+
+    <item android:id="@+id/logout"
+        android:title="Logout"
+        android:icon="@drawable/logout"/>
+
+
+</menu>

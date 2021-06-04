@@ -40,6 +40,7 @@ public class OTPActivity extends AppCompatActivity {
     TextView tv1;
     TextView tv2;
     TextView tv3;
+    Button shopBut;
 
 
 
@@ -64,11 +65,7 @@ public class OTPActivity extends AppCompatActivity {
         tv2=(TextView)findViewById(R.id.textView2);
 
         tv3=(TextView)findViewById(R.id.textView16);
-
-
-
-
-
+        shopBut = findViewById(R.id.shop_button);
 
 
         but.setOnClickListener(new View.OnClickListener() {
@@ -103,6 +100,15 @@ public class OTPActivity extends AppCompatActivity {
                         OTPActivity.this,               // Activity (for callback binding)
                         mCallbacks);        // OnVerificationStateChangedCallbacks
 
+
+            }
+        });
+
+        shopBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(OTPActivity.this, ShopkeeperLogin.class));
 
             }
         });
@@ -189,4 +195,5 @@ public class OTPActivity extends AppCompatActivity {
         mFirebaseAuth.signOut();
         finishAffinity();
     }
+
 }

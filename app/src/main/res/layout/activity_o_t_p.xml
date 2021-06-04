@@ -76,19 +76,6 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <Button
-        android:id="@+id/butProceed"
-        android:layout_width="186dp"
-        android:layout_height="38dp"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/my_button_two"
-        android:text="Proceed"
-        android:textColor="@color/colorGreen"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <!--<TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -99,6 +86,19 @@
         android:text="Enter phone number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />-->
+
+    <Button
+        android:id="@+id/butProceed"
+        android:layout_width="186dp"
+        android:layout_height="38dp"
+        android:layout_marginBottom="224dp"
+        android:background="@drawable/my_button_two"
+        android:text="Proceed"
+        android:textColor="@color/colorGreen"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ProgressBar
         android:id="@+id/progressBarReviews"
@@ -112,5 +112,37 @@
         >
 
     </ProgressBar>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="185dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="186dp"
+        android:layout_marginBottom="34dp"
+        android:text="OR"
+        android:textColor="@color/places_text_black_alpha_87"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/shop_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/butProceed" />
+
+    <Button
+        android:id="@+id/shop_button"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="114dp"
+        android:layout_marginTop="34dp"
+        android:layout_marginEnd="97dp"
+        android:layout_marginBottom="37dp"
+        android:background="@color/colorAccent"
+        android:text="Login as shopkeeper"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
