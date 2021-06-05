@@ -59,7 +59,7 @@ public class TimeSlotAdapter extends RecyclerView.Adapter<TimeSlotAdapter.TimeHo
 
     @Override
     public int getItemCount() {
-        return 0;
+        return time.size();
     }
 
     public class TimeHolder extends RecyclerView.ViewHolder {

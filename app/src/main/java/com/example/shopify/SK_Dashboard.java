@@ -28,7 +28,7 @@ public class SK_Dashboard extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        sk_add sk = new sk_add();
+        sk_home sk = new sk_home();
         getSupportFragmentManager().beginTransaction().add(R.id.container_dashboard, sk).commit();
     }
 
