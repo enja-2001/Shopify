@@ -87,6 +87,7 @@ public class OTPActivity extends AppCompatActivity {
                 tv3.setVisibility(View.GONE);
                 but.setVisibility(View.GONE);
                 et.setVisibility(View.GONE);
+                shopBut.setVisibility(View.GONE);
 
 
 
@@ -135,6 +136,7 @@ public class OTPActivity extends AppCompatActivity {
             tv3.setVisibility(View.VISIBLE);
             but.setVisibility(View.VISIBLE);
             et.setVisibility(View.VISIBLE);
+            shopBut.setVisibility(View.VISIBLE);
 
             Toast.makeText(OTPActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
 

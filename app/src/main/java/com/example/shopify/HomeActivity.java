@@ -196,6 +196,7 @@ public class HomeActivity extends AppCompatActivity  implements NavigationView.O
 
                 break;
             case R.id.item9:
+                phoneNumber=null;
                 ob.signOut();
                 Intent in=new Intent(this,com.example.shopify.OTPActivity.class);
                 startActivity(in);

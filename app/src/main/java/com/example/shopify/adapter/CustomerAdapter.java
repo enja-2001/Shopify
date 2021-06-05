@@ -48,13 +48,10 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Custom
         this.listener = listener;
     }
 
-
-
     @Override
     public void onBindViewHolder(@NonNull CustomerAdapter.CustomerHolder holder, int position) {
         holder.cust_phone.setText(time.get(position).getUserph());
         holder.rempay.setText(time.get(position).getRempay());
-
     }
 
     @Override

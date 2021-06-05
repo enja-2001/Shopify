@@ -53,12 +53,13 @@ public class sk_home extends Fragment {
     private void getData() {
 
         String ph = SharedPrefManager.getInstance(getContext()).getShopPH();
-//        Log.d("shopPHONE",ph);
+         Log.d("shopPHONE",""+ph);
         FirebaseFirestore.getInstance().collection("TimeSlots").document(ph).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull  Task<DocumentSnapshot> task) {
                 DocumentSnapshot documentSnapshot=task.getResult();
                 HashMap<String,Object> hashMap=(HashMap<String, Object>)documentSnapshot.getData();
+                Log.d("hash", ""+hashMap.size());
                 populateArrayList(hashMap);
             }
         });
@@ -129,6 +130,8 @@ public class sk_home extends Fragment {
 
         time=a1;
 
+        Log.d("Time", ""+time.size());
+
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -136,7 +139,7 @@ public class sk_home extends Fragment {
         recyclerView.setAdapter(adapter);
 
         adapter.setOnClickListener(new TimeSlotAdapter.OnItemClickListener() {
-            @Override
+           @Override
             public void onItemClick(int position) {
 
                 Intent intent = new Intent(requireActivity(), Cust_Details.class);

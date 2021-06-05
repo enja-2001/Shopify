@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -40,7 +41,8 @@ public class Cust_Details extends AppCompatActivity {
          Bundle bundle = getIntent().getExtras();
 
         String time = bundle.getString("time");
-        int cust = bundle.getInt("value");
+        Log.d("time", time);
+        Long cust = bundle.getLong("value");
         timetxt = findViewById(R.id.timecust);
         timetxt.setText(time);
         back = findViewById(R.id.backcust);
@@ -50,7 +52,7 @@ public class Cust_Details extends AppCompatActivity {
         getData(cust, time);
     }
 
-    public void getData(int cust, String time) {
+    public void getData(Long cust, String time) {
 
         String shop = SharedPrefManager.getInstance(Cust_Details.this).getShopPH();
         Task<QuerySnapshot> doc = FirebaseFirestore.getInstance().collection("Ongoing Orders").get();

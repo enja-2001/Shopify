@@ -167,13 +167,14 @@ public class SK_Register extends Fragment {
         Map<String, Object> data = new HashMap<>();
         data.put("Address", shopAddr);
         data.put("Category", category);
-        data.put("Closing Time", closingTime);
-        data.put("Maximum Customer", maxCus);
+        data.put("Closing time", closingTime);
+        data.put("Maximum customer", maxCus);
         data.put("Name", shopName);
-        data.put("Opening Time", openTime);
+        data.put("Opening time", openTime);
         data.put("PIN code", pinCode);
         data.put("Phone number", phone);
         data.put("Shopkeeper", name);
+
         FirebaseFirestore.getInstance().collection("Shops").document(phone).set(data);
 
         addTimeSlots(openTime,closingTime,phone);
