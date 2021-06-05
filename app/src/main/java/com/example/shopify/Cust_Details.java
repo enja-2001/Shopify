@@ -68,6 +68,9 @@ public class Cust_Details extends AppCompatActivity {
                 for (QueryDocumentSnapshot documentSnapshot: queryDocumentSnapshots)
                 {
 
+                    if(c == cust)
+                        break;
+
                     t = documentSnapshot.getString("Time slot");
                     sp = documentSnapshot.getString("Shop phone number");
                     if(t.equals(time) && sp.equals(shop))
@@ -80,24 +83,22 @@ public class Cust_Details extends AppCompatActivity {
 
                     }
                 }
-                Log.d("orders", ""+orders.get(0).getUserph());
-                recyclerView.setHasFixedSize(true);
-                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(Cust_Details.this);
-                recyclerView.setLayoutManager(layoutManager);
-                adapter = new CustomerAdapter(orders, Cust_Details.this);
-                recyclerView.setAdapter(adapter);
+                if(c > 0) {
+                    recyclerView.setHasFixedSize(true);
+                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(Cust_Details.this);
+                    recyclerView.setLayoutManager(layoutManager);
+                    adapter = new CustomerAdapter(orders, Cust_Details.this);
+                    recyclerView.setAdapter(adapter);
 
-                adapter.setOnClickListener(new CustomerAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(int position) {
-                        Intent intent = new Intent(Cust_Details.this, ShopkeeperOrderDetails.class);
-                        startActivity(intent);
-                    }
-                });
-
-
+                    adapter.setOnClickListener(new CustomerAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(int position) {
+                            Intent intent = new Intent(Cust_Details.this, ShopkeeperOrderDetails.class);
+                            startActivity(intent);
+                        }
+                    });
+                }
             }
-
         });
 
 

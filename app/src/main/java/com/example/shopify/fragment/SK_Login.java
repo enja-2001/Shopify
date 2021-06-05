@@ -50,17 +50,6 @@ public class SK_Login extends Fragment {
     TextView welc2;
     EditText shop_ph;
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        if(SharedPrefManager.getInstance(requireContext()).isUserLoggedIn())
-        {
-            Intent intent = new Intent(getContext(), SK_Dashboard.class);
-            startActivity(intent);
-            requireActivity().finish();
-        }
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

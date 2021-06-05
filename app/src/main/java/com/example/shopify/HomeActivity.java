@@ -7,6 +7,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -21,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.shopify.helper.SharedPrefManager;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.navigation.NavigationView;
@@ -196,9 +199,25 @@ public class HomeActivity extends AppCompatActivity  implements NavigationView.O
 
                 break;
             case R.id.item9:
-                ob.signOut();
-                Intent in=new Intent(this,com.example.shopify.OTPActivity.class);
-                startActivity(in);
+                AlertDialog.Builder dialogue = new AlertDialog.Builder(HomeActivity.this).setTitle("Confirmation!").setMessage("Do you want to logout? ");
+                dialogue.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        ob.signOut();
+                        SharedPrefManager.getInstance(HomeActivity.this).logoutCust();
+                        finishAffinity();
+                    }
+                });
+                dialogue.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        startActivity(new Intent(HomeActivity.this, SK_Dashboard.class));
+                    }
+                });
+                AlertDialog alert = dialogue.create();
+                alert.show();
+
                 break;
             case R.id.item11:
                 Intent in2=new Intent(this,com.example.shopify.AboutUsActivity.class);

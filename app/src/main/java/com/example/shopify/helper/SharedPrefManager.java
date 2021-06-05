@@ -37,7 +37,13 @@ public class SharedPrefManager {
 
     public void login()
     {
-        editor.putBoolean(KEY_LOGIN, true);
+        editor.putInt(KEY_LOGIN, 1);
+        editor.apply();
+    }
+
+    public void logincust()
+    {
+        editor.putInt(KEY_LOGIN, 2);
         editor.apply();
     }
 
@@ -82,14 +88,32 @@ public class SharedPrefManager {
         login();
     }
 
-    public boolean isUserLoggedIn()
+    public void Cust_Login()
     {
-        return sharedPreferences.getBoolean(KEY_LOGIN, false);
+        logincust();
+    }
+
+
+    public int isUserLoggedIn()
+    {
+        return sharedPreferences.getInt(KEY_LOGIN, 0);
     }
 
     public void logout()
     {
-        editor.putBoolean(KEY_LOGIN, false);
+        setEmail("");
+        setName("");
+        setShopName("");
+        setShopAddress("");
+        setShopPH("");
+        editor.putInt(KEY_LOGIN, 0);
+        editor.apply();
+    }
+
+    public void logoutCust()
+    {
+        editor.putString("phone number", "");
+        editor.putInt(KEY_LOGIN, 0);
         editor.apply();
     }
 

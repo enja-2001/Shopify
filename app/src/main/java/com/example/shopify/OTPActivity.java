@@ -12,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.shopify.helper.SharedPrefManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -186,10 +187,17 @@ public class OTPActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if(mFirebaseUser!=null){
-            Intent intent=new Intent(this,com.example.shopify.HomeActivity.class);
-            startActivity(intent);
+        int login = SharedPrefManager.getInstance(OTPActivity.this).isUserLoggedIn();
+        if(login == 1)
+        {
+            startActivity(new Intent(OTPActivity.this, SK_Dashboard.class));
         }
+        if(login == 2)
+        {
+            startActivity(new Intent(OTPActivity.this, HomeActivity.class));
+        }
+        else
+            startActivity(new Intent(OTPActivity.this, OTPActivity.class));
     }
     public void onBackPressed() {
         mFirebaseAuth.signOut();
