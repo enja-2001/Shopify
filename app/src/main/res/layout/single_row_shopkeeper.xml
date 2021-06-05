@@ -26,19 +26,19 @@
             android:id="@+id/tvOrderId"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="13dp"
             android:inputType="textMultiLine"
             android:text="Order ID - "
             android:textStyle="bold"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/tvDate" />
 
         <TextView
             android:id="@+id/tvTimeSlot"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="13dp"
             android:layout_marginTop="8dp"
             android:inputType="textMultiLine"
             android:text="Time slot - "
@@ -51,7 +51,7 @@
             android:id="@+id/tvPhoneNumber"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="13dp"
             android:layout_marginTop="8dp"
             android:inputType="textMultiLine"
             android:text="Phone Number  - "
@@ -65,9 +65,9 @@
             android:id="@+id/tvDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="13dp"
             android:text="TextView"
-            app:layout_constraintBaseline_toBaselineOf="@+id/tvShopName"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

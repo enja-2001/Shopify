@@ -23,13 +23,10 @@ public class TimeSlotAdapter extends RecyclerView.Adapter<TimeSlotAdapter.TimeHo
     Context context;
     public OnItemClickListener listener;
 
-    public TimeSlotAdapter(ArrayList<TimeSlots> time, Context context)
-    {
+    public TimeSlotAdapter(ArrayList<TimeSlots> time, Context context) {
         this.time = time;
         this.context = context;
     }
-
-
 
     @NonNull
     @Override
@@ -46,8 +43,6 @@ public class TimeSlotAdapter extends RecyclerView.Adapter<TimeSlotAdapter.TimeHo
     {
         this.listener = listener;
     }
-
-
 
     @Override
     public void onBindViewHolder(@NonNull TimeSlotAdapter.TimeHolder holder, int position) {

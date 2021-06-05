@@ -13,7 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <!--android:background="@color/colorMenu"-->
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -22,16 +21,6 @@
             app:layout_constraintBottom_toTopOf="@id/bn"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent">
-
-        <!-- <com.miguelcatalmaterialsearchviewan.MaterialSearchView
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:id="@+id/sv">
-
-         </com.miguelcatalan.materialsearchview.MaterialSearchView>-->
-
-
-
 
             <FrameLayout
                 android:id="@+id/myframe"

@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.shopify.helper.SharedPrefManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -357,6 +358,7 @@ public class OTPVerificationActivity extends AppCompatActivity {
 
                             editor.putString("Phone Number", phoneNumber);
                             editor.apply();
+                            SharedPrefManager.getInstance(OTPVerificationActivity.this).logincust();
                             Intent intent=new Intent(OTPVerificationActivity.this,com.example.shopify.HomeActivity.class);
                              startActivity(intent);
 
@@ -405,16 +407,12 @@ public class OTPVerificationActivity extends AppCompatActivity {
 
             tvResendOTP.setVisibility(View.GONE);
             tvResult.setVisibility(View.VISIBLE);
-            startTime = System.currentTimeMillis();
-            timerHandler.postDelayed(timerRunnable, 0);
-
-
-
         }
     };
 
 
     public void onBackPressed() {
+        SharedPrefManager.getInstance(OTPVerificationActivity.this).logoutCust();
         mFirebaseAuth.signOut();
         finish();
     }

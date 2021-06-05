@@ -24,7 +24,7 @@
             android:text=""
             android:textAlignment="center"
             android:textColor="@android:color/black"
-            android:textSize="30sp"
+            android:textSize="25sp"
             android:textStyle="bold"
             android:drawableEnd="@drawable/ic_baseline_chevron_right_24"
             app:layout_constraintBottom_toTopOf="@+id/pay"

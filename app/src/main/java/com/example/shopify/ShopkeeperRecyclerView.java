@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.shopify.helper.SharedPrefManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -52,23 +53,22 @@ public class ShopkeeperRecyclerView extends AppCompatActivity {
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(ShopkeeperRecyclerView.this));
-//        recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ShopkeeperRecyclerView.this);
 
-        /******
-        phoneNumber = phone number of shopkeeper
-         *****/
+        String time = getIntent().getStringExtra("time");
+        Long cust = getIntent().getLongExtra("value",0);
+        phoneNumber = SharedPrefManager.getInstance(ShopkeeperRecyclerView.this).getShopPH();
 
-        phoneNumber="4444444444";
-        getOngoingOrder(phoneNumber);
+        getOngoingOrder(phoneNumber,time);
 
     }
 
-    private void getOngoingOrder(String ph){
+    private void getOngoingOrder(String ph,String timeSlot){
 
         FirebaseFirestore.getInstance().collection("Ongoing Orders")
                 .whereEqualTo("Shop phone number",ph)
+                .whereEqualTo("Time slot",timeSlot)
                 .whereEqualTo("Status","Ongoing")
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override

@@ -63,7 +63,7 @@ class RecyclerViewAdpaterFragmentHome extends RecyclerView.Adapter<RecyclerViewA
 
         if(al.get(position).imgstr!=null)
             Picasso.get().load(al.get(position).imgstr).into(holder.iv);
-        setAnimation(holder.itemView, position);
+//        setAnimation(holder.itemView, position);
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override

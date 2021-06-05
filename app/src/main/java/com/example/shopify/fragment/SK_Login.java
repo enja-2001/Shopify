@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,17 +50,6 @@ public class SK_Login extends Fragment {
     TextView welc;
     TextView welc2;
     EditText shop_ph;
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        if(SharedPrefManager.getInstance(requireContext()).isUserLoggedIn())
-        {
-            Intent intent = new Intent(getContext(), SK_Dashboard.class);
-            startActivity(intent);
-            requireActivity().finish();
-        }
-    }
 
 
     @Override
@@ -110,9 +100,6 @@ public class SK_Login extends Fragment {
                             if (task.isSuccessful()) {
                                 SharedPrefManager.getInstance(getContext()).login();
                                 getData(email, shop_ph.getText().toString());
-                                Toast.makeText(getContext(), "Logged in successfully", Toast.LENGTH_LONG).show();
-                                Intent intent = new Intent(getContext(), SK_Dashboard.class);
-                                startActivity(intent);
 
                             } else
                             {
@@ -152,11 +139,22 @@ public class SK_Login extends Fragment {
         FirebaseFirestore.getInstance().collection("Shops").document(phone).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                DocumentSnapshot doc = task.getResult();
-                String name = doc.getString("Shopkeeper");
-                String shname = doc.getString("Name");
-                String address = doc.getString("Address") + " " + doc.getString("PIN code");
-                SharedPrefManager.getInstance(getContext()).loginUser(name, email, shname, address, phone);
+
+                if(task.isSuccessful()) {
+                    DocumentSnapshot doc = task.getResult();
+                    String name = doc.getString("Shopkeeper");
+                    String shname = doc.getString("Name");
+                    String address = doc.getString("Address") + " " + doc.getString("PIN code");
+
+                    SharedPrefManager.getInstance(getContext()).loginUser(name, email, shname, address, phone);
+                    Log.d("loginCred", name + " - " + email + " - " + shname + "- " + address + " - " + phone);
+
+                    Toast.makeText(getContext(), "Logged in successfully", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getContext(), SK_Dashboard.class);
+                    startActivity(intent);
+                }
+                else
+                    Toast.makeText(getContext(), "Error occured !", Toast.LENGTH_LONG).show();
             }
         });
     }

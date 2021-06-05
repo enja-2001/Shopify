@@ -103,11 +103,7 @@ public class SK_Register extends Fragment {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                SharedPrefManager.getInstance(getContext()).loginUser(name, email, shopName, shopAddr, phone);
-                                Toast.makeText(getContext(), "Successfully Registered", Toast.LENGTH_LONG).show();
-                                sendData(shopAddr, category, "3", "10:00 PM", shopName,"09:00 AM", pincode, phone, name);
-                                Intent intent = new Intent(getContext(), SK_Dashboard.class);
-                                startActivity(intent);
+                               sendData(shopAddr, category, "3", "10:00 PM", shopName,"09:00 AM", pincode, phone, name);
                             } else {
 
                                 emailtxt.setVisibility(View.VISIBLE);
@@ -154,11 +150,6 @@ public class SK_Register extends Fragment {
 
             }
         });
-
-
-
-
-
         return root;
     }
 
@@ -245,6 +236,11 @@ public class SK_Register extends Fragment {
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(getContext(), "TimeSlots added successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Successfully Registered", Toast.LENGTH_LONG).show();
+
+                    SharedPrefManager.getInstance(getContext()).loginUser(name, email, shopName, shopAddr, phone);
+                    Intent intent = new Intent(getContext(), SK_Dashboard.class);
+                    startActivity(intent);
                 }
                 else
                     Toast.makeText(getContext(), "Error occured!", Toast.LENGTH_SHORT).show();

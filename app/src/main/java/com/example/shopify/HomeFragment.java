@@ -69,10 +69,6 @@ public class HomeFragment extends Fragment {
                         recyclerViewAdpater.notifyDataSetChanged();
 
                     }
-//
-//                    recyclerViewAdpater=new RecyclerViewAdpaterFragmentHome(al,getContext());
-//                    recyclerView.setAdapter(recyclerViewAdpater);
-
                 }
                 else{
                     Toast.makeText(getContext(), "Error occured in fetching data!", Toast.LENGTH_SHORT).show();

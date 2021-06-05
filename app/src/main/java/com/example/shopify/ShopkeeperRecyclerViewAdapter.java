@@ -50,7 +50,6 @@ class ShopkeeperRecyclerViewAdapter extends RecyclerView.Adapter<ShopkeeperRecyc
         lastPosition=-1;
     }
 
-
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -80,14 +79,6 @@ class ShopkeeperRecyclerViewAdapter extends RecyclerView.Adapter<ShopkeeperRecyc
     @Override
     public int getItemCount() {
         return al.size();
-    }
-
-    private void setAnimation(View view,int position){
-
-//        if(position>lastPosition) {                     //If the current view wasn't previously displayed on screen, it's animated
-        Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.slide_in_left);
-        view.startAnimation(animation);
-//            lastPosition=position;
     }
 }
 

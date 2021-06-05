@@ -55,9 +55,9 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvTitle1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:cardElevation="10dp"
-        app:cardCornerRadius="10dp">
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:cardElevation="10dp"
+                app:cardCornerRadius="10dp">
 
 
                 <androidx.recyclerview.widget.RecyclerView

@@ -14,9 +14,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.shopify.helper.SharedPrefManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,6 +40,8 @@ public class ShopkeeperOrderDetails extends AppCompatActivity {
     Button butOrderPicked;
     RecyclerView recyclerView;
     RecyclerViewOrderConfirmationAdapter adapter;
+
+    String ph;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +64,7 @@ public class ShopkeeperOrderDetails extends AppCompatActivity {
 
         tvOrderId.setText(obj.orderId);
         tvTimeSlot.setText(obj.timeSlot);
-        tvPhoneNumber.setText("+91 "+obj.shopPhoneNumber);
-
+        tvPhoneNumber.setText("+91 "+obj.shopPhoneNumber);  //here obj.shopPhoneNumber =  phone number of customer
 
 
         recyclerView.setHasFixedSize(true);
@@ -78,30 +83,50 @@ public class ShopkeeperOrderDetails extends AppCompatActivity {
 //        Log.d("InsideOngoing",""+alOrderNode.get(0));
 
         adapter.notifyDataSetChanged();
+        ph=SharedPrefManager.getInstance(ShopkeeperOrderDetails.this).getShopPH();
 
-        String shopkeeperPhoneNumber;
-        /******
-         shopkeeperPhoneNumber = phone number of shopkeeper
-         *****/
-        shopkeeperPhoneNumber="4444444444";
 
         butOrderPicked.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                Log.d("detailsMM",obj.orderId+" - "+obj.shopPhoneNumber+" - "+obj.timeSlot);
+
+                //update the Status of order
                 FirebaseFirestore.getInstance().collection("Ongoing Orders").document(obj.orderId).update("Status","History").addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
+
+                            //Now get the timeSlot value from database
+                            FirebaseFirestore.getInstance().collection("TimeSlots").document(ph).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                    if(task.isSuccessful()){
+                                        long x=task.getResult().getLong(obj.timeSlot);
+                                        x--;
+
+                                        //update the timeslot
+                                        FirebaseFirestore.getInstance().collection("TimeSlots").document(ph).update(obj.timeSlot,x).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if(task.isSuccessful())
+                                                    Toast.makeText(ShopkeeperOrderDetails.this, "Order picked successfully", Toast.LENGTH_SHORT).show();
+                                                else
+                                                    Toast.makeText(ShopkeeperOrderDetails.this, "Error occured !", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                    }
+                                }
+                            });
+
                             finish();
                         } else {
                             Toast.makeText(ShopkeeperOrderDetails.this, "Error occured!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
-
             }
         });
-
     }
 }
