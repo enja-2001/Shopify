@@ -105,7 +105,7 @@ public class SK_Register extends Fragment {
                             if (task.isSuccessful()) {
                                 SharedPrefManager.getInstance(getContext()).loginUser(name, email, shopName, shopAddr, phone);
                                 Toast.makeText(getContext(), "Successfully Registered", Toast.LENGTH_LONG).show();
-                                sendData(shopAddr, category, 3, "10:00 PM", shopName,"09:00 AM", pincode, phone, name);
+                                sendData(shopAddr, category, "3", "10:00 PM", shopName,"09:00 AM", pincode, phone, name);
                                 Intent intent = new Intent(getContext(), SK_Dashboard.class);
                                 startActivity(intent);
                             } else {
@@ -162,15 +162,15 @@ public class SK_Register extends Fragment {
         return root;
     }
 
-    public void sendData(String shopAddr, String category, int maxCus, String closingTime, String shopName, String openTime, String pinCode, String phone, String name)
+    public void sendData(String shopAddr, String category, String maxCus, String closingTime, String shopName, String openTime, String pinCode, String phone, String name)
     {
-        Map<String, Object> data = new HashMap<>();
+        Map<String, String> data = new HashMap<>();
         data.put("Address", shopAddr);
         data.put("Category", category);
-        data.put("Closing Time", closingTime);
-        data.put("Maximum Customer", maxCus);
+        data.put("Closing time", closingTime);
+        data.put("Maximum customer", maxCus);
         data.put("Name", shopName);
-        data.put("Opening Time", openTime);
+        data.put("Opening time", openTime);
         data.put("PIN code", pinCode);
         data.put("Phone number", phone);
         data.put("Shopkeeper", name);

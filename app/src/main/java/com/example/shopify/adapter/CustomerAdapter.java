@@ -52,14 +52,14 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Custom
 
     @Override
     public void onBindViewHolder(@NonNull CustomerAdapter.CustomerHolder holder, int position) {
-        holder.cust_phone.setText(time.get(position).getUserph());
-        holder.rempay.setText(time.get(position).getRempay());
+       holder.cust_phone.setText(""+time.get(position).getUserph());
+       holder.rempay.setText(""+time.get(position).getRempay());
 
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return time.size();
     }
 
     public class CustomerHolder extends RecyclerView.ViewHolder {

@@ -39,10 +39,13 @@ public class Cust_Details extends AppCompatActivity {
         setContentView(R.layout.activity_cust_details);
 
         Bundle bundle = getIntent().getExtras();
+        orders = new ArrayList<>();
 
         String time = bundle.getString("time");
         Log.d("time", time);
         Long cust = bundle.getLong("value");
+        Log.d("value", ""+cust);
+
         timetxt = findViewById(R.id.timecust);
         timetxt.setText(time);
         back = findViewById(R.id.backcust);
@@ -65,7 +68,7 @@ public class Cust_Details extends AppCompatActivity {
                 for (QueryDocumentSnapshot documentSnapshot: queryDocumentSnapshots)
                 {
 
-                    t = documentSnapshot.getString("Time Slot");
+                    t = documentSnapshot.getString("Time slot");
                     sp = documentSnapshot.getString("Shop phone number");
                     if(t.equals(time) && sp.equals(shop))
                     {
@@ -77,24 +80,26 @@ public class Cust_Details extends AppCompatActivity {
 
                     }
                 }
+                Log.d("orders", ""+orders.get(0).getUserph());
+                recyclerView.setHasFixedSize(true);
+                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(Cust_Details.this);
+                recyclerView.setLayoutManager(layoutManager);
+                adapter = new CustomerAdapter(orders, Cust_Details.this);
+                recyclerView.setAdapter(adapter);
+
+                adapter.setOnClickListener(new CustomerAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(int position) {
+                        Intent intent = new Intent(Cust_Details.this, ShopkeeperOrderDetails.class);
+                        startActivity(intent);
+                    }
+                });
+
 
             }
 
         });
 
-        recyclerView.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(Cust_Details.this);
-        recyclerView.setLayoutManager(layoutManager);
-        adapter = new CustomerAdapter(orders, Cust_Details.this);
-        recyclerView.setAdapter(adapter);
-
-        adapter.setOnClickListener(new CustomerAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                Intent intent = new Intent(Cust_Details.this, ShopkeeperOrderDetails.class);
-                startActivity(intent);
-            }
-        });
 
 
     }
