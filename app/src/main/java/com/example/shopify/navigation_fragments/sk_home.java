@@ -135,16 +135,16 @@ public class sk_home extends Fragment {
         adapter = new TimeSlotAdapter(time, getContext());
         recyclerView.setAdapter(adapter);
 
-//        adapter.setOnClickListener(new TimeSlotAdapter.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(int position) {
-//
-//                Intent intent = new Intent(requireActivity(), Cust_Details.class);
-//                intent.putExtra("time", time.get(position).getTime());
-//                intent.putExtra("value", time.get(position).getValue());
-//                startActivity(intent);
-//            }
-//        });
+        adapter.setOnClickListener(new TimeSlotAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+
+                Intent intent = new Intent(requireActivity(), Cust_Details.class);
+                intent.putExtra("time", time.get(position).getTime());
+                intent.putExtra("value", time.get(position).getValue());
+                startActivity(intent);
+            }
+        });
 
     }
 }

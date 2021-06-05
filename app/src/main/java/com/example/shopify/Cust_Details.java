@@ -37,7 +37,7 @@ public class Cust_Details extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cust_details);
 
-        Bundle bundle = getIntent().getExtras();
+         Bundle bundle = getIntent().getExtras();
 
         String time = bundle.getString("time");
         int cust = bundle.getInt("value");
@@ -78,6 +78,8 @@ public class Cust_Details extends AppCompatActivity {
             }
 
         });
+
+//        FirebaseFirestore.getInstance().collection("Ongoing")
 
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(Cust_Details.this);
