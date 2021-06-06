@@ -53,18 +53,17 @@ public class SK_Dashboard extends AppCompatActivity implements BottomNavigationV
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
         switch (menuItem.getItemId()) {
+
             case R.id.time:
                 sk_home sk = new sk_home();
                 getSupportFragmentManager().beginTransaction().replace(R.id.container_dashboard, sk).commit();
                 break;
+
             case R.id.add:
                 sk_add add = new sk_add();
                 getSupportFragmentManager().beginTransaction().replace(R.id.container_dashboard, add).commit();
                 break;
-            case R.id.covid:
-                covid cov = new covid();
-                getSupportFragmentManager().beginTransaction().replace(R.id.container_dashboard, cov).commit();
-                break;
+
             case R.id.logout:
                 AlertDialog.Builder dialogue = new AlertDialog.Builder(SK_Dashboard.this).setTitle("Confirmation!").setMessage("Do you want to logout? ");
                 dialogue.setPositiveButton("YES", new DialogInterface.OnClickListener() {
