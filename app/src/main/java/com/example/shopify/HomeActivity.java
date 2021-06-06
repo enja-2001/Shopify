@@ -126,15 +126,6 @@ public class HomeActivity extends AppCompatActivity  implements NavigationView.O
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-//                    case R.id.item1:
-//                        itemView.removeView(notificationBadge);
-//
-//                        editor.putString("notificationBadgeCount", Integer.toString(0));
-//                        editor.apply();
-//
-//                        getSupportFragmentManager().beginTransaction().replace(R.id.myframe, new NotificationFragment()).commit();
-//                        break;
-
                     case R.id.item3:
                         getSupportFragmentManager().beginTransaction().replace(R.id.myframe, new HomeFragment()).commit();
                         break;
@@ -262,8 +253,5 @@ public class HomeActivity extends AppCompatActivity  implements NavigationView.O
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(HomeActivity.this);
         tvNavigationName.setText(preferences.getString("First Name",null));
-
-
     }
-
 }
