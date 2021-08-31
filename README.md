@@ -33,8 +33,6 @@ to wait too long at the store. They can just come their alloted time slot, pay a
   <img src="/Screenshots/Screenshot_2021-06-06-14-07-36-59_21030d31dc05c1ccf317e5cdef84a3a6.jpg" width="210" height="400" alt="IMG"/>
   <img src="/Screenshots/Screenshot_2021-06-06-14-07-52-14_21030d31dc05c1ccf317e5cdef84a3a6.jpg" width="210" height="400" alt="IMG"/>
   <img src="/Screenshots/Screenshot_2021-06-06-14-07-58-75_21030d31dc05c1ccf317e5cdef84a3a6.jpg" width="210" height="400" alt="IMG"/>
-   <img src="/Screenshots/Screenshot_2021-06-06-14-08-21-89_21030d31dc05c1ccf317e5cdef84a3a6.jpg" width="210" height="400" alt="IMG"/>
-
 </p>
 
 ## Tech stack
