@@ -18,6 +18,25 @@ Once a customer books a slot, a notification will pop up in the corresponding Sh
 Shopkeepers can see the list of items from that app and hence can keep them ready and packed beforehand, so that the cusdtomers don't have
 to wait too long at the store. They can just come their alloted time slot, pay and take their packed items home, thereby reducing the crowd at the store considerably.
 
+<p align="center">
+     <img src="/Screenshots/Screenshot_2021-06-06-14-10-32-27_21030d31dc05c1ccf317e5cdef84a3a6.jpg" width="210" height="400" alt="IMG"/>
+  <img src="/Screenshots/Screenshot_2021-06-06-14-11-10-55_21030d31dc05c1ccf317e5cdef84a3a6.jpg" width="210" height="400" alt="IMG"/>
+</p>
+
+<p align="center">
+  <img src="/Screenshots/Screenshot_2021-06-06-14-06-59-19_21030d31dc05c1ccf317e5cdef84a3a6 - Copy.jpg" width="210" height="400" alt="IMG"/>
+  <img src="/Screenshots/Screenshot_2021-06-06-14-07-10-66_21030d31dc05c1ccf317e5cdef84a3a6 - Copy.jpg" width="210" height="400" alt="IMG"/>
+  <img src="/Screenshots/Screenshot_2021-06-06-14-07-22-19_21030d31dc05c1ccf317e5cdef84a3a6 - Copy.jpg" width="210" height="400" alt="IMG"/>
+</p>
+
+<p align="center">
+  <img src="/Screenshots/Screenshot_2021-06-06-14-07-36-59_21030d31dc05c1ccf317e5cdef84a3a6.jpg" width="210" height="400" alt="IMG"/>
+  <img src="/Screenshots/Screenshot_2021-06-06-14-07-52-14_21030d31dc05c1ccf317e5cdef84a3a6.jpg" width="210" height="400" alt="IMG"/>
+  <img src="/Screenshots/Screenshot_2021-06-06-14-07-58-75_21030d31dc05c1ccf317e5cdef84a3a6.jpg" width="210" height="400" alt="IMG"/>
+   <img src="/Screenshots/Screenshot_2021-06-06-14-08-21-89_21030d31dc05c1ccf317e5cdef84a3a6.jpg" width="210" height="400" alt="IMG"/>
+
+</p>
+
 ## Tech stack
 - Java
 - Android Studio
